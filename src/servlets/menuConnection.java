@@ -12,5 +12,3 @@ public class menuConnection extends HttpServlet {
 		this.getServletContext().getRequestDispatcher( "/WEB-INF/menuConnection.jsp" ).forward( request, response );
 		}
 }
-
-//commentaire
