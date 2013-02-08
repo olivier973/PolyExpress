@@ -1,7 +1,7 @@
+package connexion;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-
 
 public class ConnexionBdd {
 	private String dbURL = "";
@@ -29,19 +29,36 @@ public class ConnexionBdd {
 	public Boolean connect() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
-			this.dbConnect = DriverManager.getConnection("jdbc:mysql:" + this.dbURL, this.user, this.password);
+			this.dbConnect = DriverManager.getConnection("jdbc:mysql://" + this.dbURL, this.user, this.password);
 			this.dbStatement = this.dbConnect.createStatement();
 			return true;
 		} catch (SQLException ex) {
 			System.out.println("SQL Exception Connexion");
+
 		} catch (ClassNotFoundException ex) {
-			System.out.println("SQL Exception Connexion");
+			System.out.println("Exception Connexion classe");
 		} catch (InstantiationException ex) {
-			System.out.println("SQL Exception Connexion");
+			System.out.println("Exception Connexion instanciation");
 		} catch (IllegalAccessException ex) {
-			System.out.println("SQL Exception Connexion");
+			System.out.println("Exception Connexion accès");
 		}
 		return false;
+	}
+
+	/**
+	 * Se connecter, executer une requete SQL, fermer la connexion
+	 * @param sql
+	 * @return resultat de la requete
+	 */
+	public ResultSet requete(String sql) {
+		if (this.connect()) {
+			ResultSet rs = this.exec(sql);
+			return rs;
+		} else {
+			System.out.println("Mysql connection failed !!!");
+		}
+		this.close();
+		return null;
 	}
 
 	/**
@@ -69,25 +86,5 @@ public class ConnexionBdd {
 		} catch (SQLException ex) {
 			System.out.println("SQL Exception Close");
 		}
-	}
-
-	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		ConnexionBdd ConnexionBdd = new ConnexionBdd("//localhost/java", "Java", "Java");
-		if (ConnexionBdd.connect()) {
-			try {
-				ResultSet rs = ConnexionBdd.exec("SELECT * FROM client");
-				if (rs != null) {
-					while (rs.next()) {
-						System.out.println("Valeur: " + rs.getString(1));
-					}
-				}
-			} catch (SQLException ex) {
-				System.out.println("SQL Exception");
-			}
-		} else {
-			System.out.println("Mysql connection failed !!!");
-		}
-		ConnexionBdd.close();
 	}
 }

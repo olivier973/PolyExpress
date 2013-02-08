@@ -1,15 +1,15 @@
 package beans;
 
 public class Produit {
-	private Commerçant commerçant;
+	private Commercant commercant;
 	private String nom;
 	private int quantite;
 	private String description;
-	public Commerçant getCommerçant() {
-		return commerçant;
+	public Commercant getCommercant() {
+		return commercant;
 	}
-	public void setCommerçant(Commerçant commerçant) {
-		this.commerçant = commerçant;
+	public void setCommercant(Commercant commercant) {
+		this.commercant = commercant;
 	}
 	public String getNom() {
 		return nom;
