@@ -95,6 +95,14 @@ public class ConnexionBdd {
 		}
 	}
 
+	public java.sql.Statement getDbStatement() {
+		return dbStatement;
+	}
+
+	public void setDbStatement(java.sql.Statement dbStatement) {
+		this.dbStatement = dbStatement;
+	}
+
 	public boolean identifiantsValides(String login, String motDePasse, String type)
 	{
 		boolean presents = true;

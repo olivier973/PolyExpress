@@ -5,10 +5,12 @@ import java.sql.Connection;
 import connexion.ConnexionBdd;
 
 public class DAOFactory {
-	String url;
-	String mdp;
-	String user;
-	ConnexionBdd connexion;
+	private String url;
+	private String mdp;
+	private String user;
+	private ConnexionBdd connexion;
+	
+
 	public DAOFactory(String url, String mdp, String user) {
 		super();
 		this.url = url;
@@ -29,5 +31,12 @@ public class DAOFactory {
 		connexion=new ConnexionBdd(url, user, mdp);
 		connexion.connect();
 		return connexion.getDbConnect();
+	}
+	public ConnexionBdd getConnexion() {
+		return connexion;
+	}
+
+	public void setConnexion(ConnexionBdd connexion) {
+		this.connexion = connexion;
 	}
 }
