@@ -23,6 +23,7 @@
 					<li class="divider"></li>
 					<li><a href="details.html">catalogue</a></li>
 					<li class="divider"></li>
+				</ul>
 			</div>
 		</div>
 		<div class="footer">

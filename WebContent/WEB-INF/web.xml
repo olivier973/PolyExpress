@@ -18,14 +18,6 @@
     <url-pattern>/connexion</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>ClientServlet</servlet-name>
-    <servlet-class>servlets.ClientServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ClientServlet</servlet-name>
-    <url-pattern>/clientServlet</url-pattern>
-  </servlet-mapping>
-  <servlet>
     <servlet-name>Authentification</servlet-name>
     <servlet-class>servlets.Authentification</servlet-class>
   </servlet>

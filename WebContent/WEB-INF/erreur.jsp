@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Espace client</title>
+<title>Espace utilisateur</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -27,8 +27,7 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<P>${message} ${clientConnexion.prenom} ${clientConnexion.nom}</p>
-			<p>Vous pouvez ici consulter vos commandes précedemment effectuées</p>
+			<p>${message}</p>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

@@ -34,7 +34,6 @@ public class ConnexionBdd {
 			return true;
 		} catch (SQLException ex) {
 			System.out.println("SQL Exception Connexion");
-
 		} catch (ClassNotFoundException ex) {
 			System.out.println("Exception Connexion classe");
 		} catch (InstantiationException ex) {
@@ -51,7 +50,7 @@ public class ConnexionBdd {
 	 * @return resultat de la requete
 	 */
 	public ResultSet requete(String sql) {
-		if (this.connect()) {
+		if(this.connect()) {
 			ResultSet rs = this.exec(sql);
 			return rs;
 		} else {
@@ -86,5 +85,26 @@ public class ConnexionBdd {
 		} catch (SQLException ex) {
 			System.out.println("SQL Exception Close");
 		}
+	}
+
+	public boolean identifiantsValides(String login, String motDePasse, String type)
+	{
+		boolean presents = true;
+		ResultSet rs;
+
+		rs = requete("SELECT count(*) FROM " + type + " WHERE email='"+ login +"' and mdp='" + motDePasse + "';");
+
+		if(rs != null)
+		{
+			try {
+				rs.next();
+				if(rs.getString(1).equals("0"))
+					presents = false;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return presents;
 	}
 }

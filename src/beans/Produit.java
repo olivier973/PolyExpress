@@ -1,10 +1,18 @@
 package beans;
 
-public class Produit {
+import java.io.Serializable;
+
+public class Produit implements Serializable{
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	
 	private Commercant commercant;
 	private String nom;
 	private int quantite;
 	private String description;
+	private float prix;
 	public Commercant getCommercant() {
 		return commercant;
 	}
@@ -28,5 +36,11 @@ public class Produit {
 	}
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	public float getPrix() {
+		return prix;
+	}
+	public void setPrix(float prix) {
+		this.prix = prix;
 	}
 }
