@@ -10,6 +10,14 @@ public class ConnexionBdd {
 	private java.sql.Connection dbConnect = null;
 	private java.sql.Statement dbStatement = null;
 
+	public java.sql.Connection getDbConnect() {
+		return dbConnect;
+	}
+
+	public void setDbConnect(java.sql.Connection dbConnect) {
+		this.dbConnect = dbConnect;
+	}
+
 	/**
 	 * Constructeur
 	 * @param url
