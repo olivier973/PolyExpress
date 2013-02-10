@@ -9,15 +9,15 @@ public class Produit implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private int commercant;
+	private Commercant commercant;
 	private String nom;
 	private int quantite;
 	private String description;
 	private float prix;
-	public int getCommercant() {
+	public Commercant getCommercant() {
 		return commercant;
 	}
-	public void setCommercant(int commercant) {
+	public void setCommercant(Commercant commercant) {
 		this.commercant = commercant;
 	}
 	public String getNom() {
