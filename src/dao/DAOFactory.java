@@ -20,16 +20,16 @@ public class DAOFactory {
 
 	public static DAOFactory getInstance()
 	{
-		String url = "localhost:8889/java";
-		String mdp = "root";
-		String user ="root";
+		String url = "127.0.0.1:3306/java";//"127.0.0.1:3306/java" ou "localhost:8889/java"
+		String mdp = "root";//"root"
+		String user = "";//"" ou "root"
 		return new DAOFactory(url, mdp, user);
 	}
 
 	public Connection getConnection()
 	{
-		connexion=new ConnexionBdd(url, user, mdp);
-		connexion.connect();
+		this.connexion=new ConnexionBdd(url, user, mdp);
+		this.connexion.connect();
 		return connexion.getDbConnect();
 	}
 	public ConnexionBdd getConnexion() {

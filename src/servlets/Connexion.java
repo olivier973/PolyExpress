@@ -1,11 +1,7 @@
 package servlets;
 
 import java.io.IOException;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -17,8 +13,10 @@ import javax.servlet.http.HttpSession;
 import beans.Client;
 import beans.Commercant;
 import beans.Livreur;
-import beans.Produit;
-import connexion.ConnexionBdd;
+import dao.ClientDAO;
+import dao.CommercantDAO;
+import dao.DAOFactory;
+import dao.LivreurDAO;
 
 /**
  * Servlet implementation class Connexion
@@ -34,8 +32,18 @@ public class Connexion extends HttpServlet {
 	private static final String JSP_CLIENT = "/WEB-INF/client.jsp";
 	private static final String JSP_COMMERCANT = "/WEB-INF/commercant.jsp";
 	private static final String JSP_LIVREUR = "/WEB-INF/livreur.jsp";
-	private static final String JSP_ERREUR = "/WEB-INF/erreur.jsp";
-	private static final String SESSION_COMMERCANT = "listeCommercantsConnectes";
+	private static final String JSP_ERREUR = "/WEB-INF/affichageMessage.jsp";
+	private static final String SESSION_COMMERCANT = "commercants";
+	private ClientDAO clientDao;
+	private CommercantDAO commercantDao;
+	private LivreurDAO livreurDao;
+	public static final String CONF_DAO_FACTORY = "daofactory";
+
+	public void init() throws ServletException {
+		/* Récupération d'une instance de notre DAO Utilisateur
+		 */
+		this.clientDao = new ClientDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
+	}
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -60,88 +68,83 @@ public class Connexion extends HttpServlet {
 		String login = request.getParameter(CHAMP_LOGIN);
 		String motDePasse = request.getParameter(CHAMP_MDP);
 		String type = request.getParameter(CHAMP_TYPE);
-		String message;
+		String message = null;
 		String page = JSP_ERREUR;
-
-		ConnexionBdd ConnexionBdd = new ConnexionBdd("127.0.0.1:3306/java", "root", "");
 
 		if (login.trim().isEmpty() || motDePasse.trim().isEmpty()) {
 			message = MESS_CHPS_VIDES;
 		}
-		else if(ConnexionBdd.identifiantsValides(login,motDePasse,type)==false) {
-			message = MESS_MAUVAIS_IDENT;
-		}
-		else {
-			message = MESS_BON;
-
-			ResultSet rs;
-
-			if((rs = ConnexionBdd.requete("SELECT * FROM " + type + " WHERE email='"+ request.getParameter(CHAMP_LOGIN) +"'")) != null)
+		else if(type.toString().equals("client"))
+		{
+			Client client;
+			if((client = (Client) clientDao.trouver(login, motDePasse))==null) {
+				message = MESS_MAUVAIS_IDENT;
+			}
+			else
 			{
-				try {
-					while (rs.next()) {
-						if(type.toString().equals("client"))
-						{
-							System.out.println("Valeur: " + rs.getString(2) + " " + rs.getString(3));
-							Client client = new Client();
-							client.setNom(rs.getString(2));
-							client.setPrenom(rs.getString(3));
-							request.setAttribute("clientConnexion", client);
-							page = JSP_CLIENT;
-						}
-						else if(type.toString().equals("commercant"))
-						{
-							System.out.println("Valeur: " + rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3));
-							Commercant commercant = new Commercant();
-							commercant.setId(rs.getInt(1));
-							commercant.setNom(rs.getString(2));
-							commercant.setPrenom(rs.getString(3));
-							
-							HttpSession session = request.getSession();
-							Map<Integer, Commercant> commercants = (HashMap<Integer, Commercant>)	session.getAttribute(SESSION_COMMERCANT);
-							/* Si aucune map n'existe, alors initialisation d'une nouvelle map */
-							if ( commercants == null ) {
-							commercants = new HashMap<Integer, Commercant>();
-							}
-							/* Puis ajout du commercant courant dans la map */
-							commercants.put( commercant.getId(), commercant ); //id de session courante a la place de commercant.getId()
-							/* Et enfin (ré)enregistrement de la map en session
-							*/
-							session.setAttribute( SESSION_COMMERCANT , commercants );
-							
-							session.setAttribute("connexionCommercant", commercant);
-							page = JSP_COMMERCANT;
+				message = MESS_BON;
+				request.setAttribute("clientConnexion", client);
+				page = JSP_CLIENT;
+			}
+		}
+		else if(type.toString().equals("livreur"))
+		{
+			Livreur livreur;
+			if((livreur =(Livreur) livreurDao.trouver(login, motDePasse))==null) {
+				message = MESS_MAUVAIS_IDENT;
+			}
+			else
+			{
+				message = MESS_BON;
+				request.setAttribute("livreurConnexion", livreur);
+				page = JSP_LIVREUR;
+			}
+		}
+		else if(type.toString().equals("commercant"))
+		{
+			Commercant commercant;
+			if((commercant =(Commercant) commercantDao.trouver(login, motDePasse))==null) {
+				message = MESS_MAUVAIS_IDENT;
+			}
+			else
+			{
+				message = MESS_BON;
 
-							List<Produit> listeproduits = new ArrayList<Produit>();
-							ResultSet rsc;
-							if((rsc = ConnexionBdd.requete("select nom, quantite, prix, description, reference from produit where id_commercant=" + commercant.getId() + ";")) != null)
-							{
-								while (rsc.next()) {
-									Produit produit = new Produit();
-									produit.setId(rsc.getInt(5));
-									produit.setNom(rsc.getString(1));
-									produit.setPrix(rsc.getInt(3));
-									produit.setQuantite(rsc.getInt(2));
-									produit.setDescription(rsc.getString(4));
-									listeproduits.add(produit);
-								}
-								request.setAttribute("listeproduits", listeproduits);
-							}
-						}
-						else if(type.toString().equals("livreur"))
-						{
-							System.out.println("Valeur: " + rs.getString(2) + " " + rs.getString(3));
-							Livreur livreur = new Livreur();
-							livreur.setNom(rs.getString(2));
-							livreur.setPrenom(rs.getString(3));
-							request.setAttribute("livreurConnexion", livreur);
-							page = JSP_LIVREUR;
-						}
-					}
-				} catch (SQLException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				HttpSession session = request.getSession();
+
+				session.setAttribute("connexionCommercant", commercant);
+				page = JSP_COMMERCANT;
+
+				Map<Integer, Commercant> commercants = (HashMap<Integer, Commercant>) session.getAttribute(SESSION_COMMERCANT);
+				if(commercants == null)
+				{
+					commercants = new HashMap<Integer, Commercant>();
 				}
+				commercants.put(commercant.getId(), commercant);
+				session.setAttribute(SESSION_COMMERCANT, commercants);
+
+				/*	<c:forEach items="${sessionScope.commercants}" var="mapEntry">
+						<tr>
+								<td>${mapEntry.value.nom}</td>
+								<td>${mapEntry.value.prenom}</td>
+						</tr>
+					</c:forEach>	*/
+
+				/*List<Produit> listeproduits = new ArrayList<Produit>();
+				ResultSet rsc;
+				if((rsc = ConnexionBdd.requete("select nom, quantite, prix, description, reference from produit where id_commercant=" + commercant.getId() + ";")) != null)
+				{
+					while (rsc.next()) {
+						Produit produit = new Produit();
+						produit.setId(rsc.getInt(5));
+						produit.setNom(rsc.getString(1));
+						produit.setPrix(rsc.getInt(3));
+						produit.setQuantite(rsc.getInt(2));
+						produit.setDescription(rsc.getString(4));
+						listeproduits.add(produit);
+					}
+					request.setAttribute("listeproduits", listeproduits);
+				}*/
 			}
 		}
 		request.setAttribute("message", message);

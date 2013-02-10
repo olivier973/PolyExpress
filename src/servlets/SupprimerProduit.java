@@ -20,7 +20,8 @@ public class SupprimerProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private static final String CHAMP_ID = "id";
 	private static final String MESS_BON = "Produit supprimé.";
-	private static final String JSP_SUPP = "/WEB-INF/produitsupprime.jsp";
+	private static final String MESS_ERREUR = "Erreur, produit non supprimé.";
+	private static final String JSP_SUPP = "/WEB-INF/affichageMessage.jsp";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -40,12 +41,11 @@ public class SupprimerProduit extends HttpServlet {
 		String page = JSP_SUPP;
 		message = MESS_BON;
 
-		ConnexionBdd ConnexionBdd = new ConnexionBdd("127.0.0.1:3306/java", "root", "");
-
-		ResultSet rs;
 		HttpSession session = request.getSession();
 		Commercant commercant = (Commercant) session.getAttribute("connexionCommercant");
 
+		ConnexionBdd ConnexionBdd = new ConnexionBdd("127.0.0.1:3306/java", "root", "");
+		ResultSet rs;
 		if(ConnexionBdd.connect())
 		{
 			if((rs = ConnexionBdd.exec("SELECT * FROM produit WHERE reference='" + id + "' and id_commercant='" + commercant.getId() + "';")) != null)
@@ -57,14 +57,17 @@ public class SupprimerProduit extends HttpServlet {
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();
+					message = MESS_ERREUR;
 				}
 			}
 		}else {
 			System.out.println("Mysql connection failed !!!");
+			message = MESS_ERREUR;
 		}
 		ConnexionBdd.close();
-		//request.setAttribute("message", message);
-		//this.getServletContext().getRequestDispatcher(page).forward(request, response);
+
+		request.setAttribute("message", message);
+		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**

@@ -6,20 +6,45 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import beans.Client;
+import beans.Commercant;
+import beans.Livreur;
 
 public class DAOUtilitaire {
-	public static Client map( ResultSet resultSet ) throws SQLException 
+	public static <T, Object> Object map(ResultSet resultSet, T dao) throws SQLException 
 	{
-		Client utilisateur = new Client();
-
-		utilisateur.setEmail( resultSet.getString( "email" ) ); 
-		utilisateur.setMdp( resultSet.getString( "mdp" ));
-		utilisateur.setNom(resultSet.getString("nom"));
-		utilisateur.setCoordonnee( resultSet.getString( "coordonnee" ) ); 
-		utilisateur.setId( resultSet.getInt( "id_client" ));
-		utilisateur.setPrenom(resultSet.getString("prenom"));
-
-		return utilisateur; 
+		if(dao instanceof ClientDAO)
+		{
+			Client utilisateur = new Client();
+			utilisateur.setEmail( resultSet.getString( "email" ) ); 
+			utilisateur.setMdp( resultSet.getString( "mdp" ));
+			utilisateur.setNom(resultSet.getString("nom"));
+			utilisateur.setCoordonnee( resultSet.getString( "coordonnee" ) ); 
+			utilisateur.setId( resultSet.getInt( "id_client" ));
+			utilisateur.setPrenom(resultSet.getString("prenom"));
+			return (Object) utilisateur;
+		}
+		if(dao instanceof CommercantDAO)
+		{
+			Commercant utilisateur = new Commercant();
+			utilisateur.setEmail( resultSet.getString( "email" ) ); 
+			utilisateur.setMdp( resultSet.getString( "mdp" ));
+			utilisateur.setNom(resultSet.getString("nom"));
+			utilisateur.setCoordonnee( resultSet.getString( "coordonnee" ) ); 
+			utilisateur.setId( resultSet.getInt( "id_client" ));
+			utilisateur.setPrenom(resultSet.getString("prenom"));
+			return (Object) utilisateur;
+		}
+		if(dao instanceof LivreurDAO)
+		{
+			Livreur utilisateur = new Livreur();
+			utilisateur.setEmail( resultSet.getString( "email" ) ); 
+			utilisateur.setMdp( resultSet.getString( "mdp" ));
+			utilisateur.setNom(resultSet.getString("nom"));
+			utilisateur.setId( resultSet.getInt( "id_client" ));
+			utilisateur.setPrenom(resultSet.getString("prenom"));
+			return (Object) utilisateur;
+		}
+		return null;
 	}
 	public static void fermetureSilencieuse( ResultSet resultSet ) 
 	{ 	

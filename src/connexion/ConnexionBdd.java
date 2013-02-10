@@ -37,7 +37,9 @@ public class ConnexionBdd {
 	public Boolean connect() {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
+			System.out.println("jdbc:mysql://" + this.dbURL);
 			this.dbConnect = DriverManager.getConnection("jdbc:mysql://" + this.dbURL, this.user, this.password);
+			System.out.println("jdbc:mysql://" + this.dbURL);
 			this.dbStatement = this.dbConnect.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			return true;
 		} catch (SQLException ex) {
