@@ -5,6 +5,12 @@ import java.sql.Connection;
 import connexion.ConnexionBdd;
 
 public class DAOFactory {
+	
+	private static final String URL_B = "127.0.0.1:3306/java";
+	private static final String URL_O = "localhost:8889/java";
+	private static final String MDP_B = "";
+	private static final String IDENT = "root";
+	
 	private String url;
 	private String mdp;
 	private String user;
@@ -20,9 +26,9 @@ public class DAOFactory {
 
 	public static DAOFactory getInstance()
 	{
-		String url = "localhost:8889/java";//"127.0.0.1:3306/java" ou "localhost:8889/java"
-		String mdp = "root";//"" ou "root"
-		String user = "root";//"root"
+		String url = URL_B; // URL_B ou URL_O
+		String mdp = MDP_B; // MDP_B ou IDENT
+		String user = IDENT;
 		return new DAOFactory(url, mdp, user);
 	}
 
@@ -39,6 +45,7 @@ public class DAOFactory {
 	public void setConnexion(ConnexionBdd connexion) {
 		this.connexion = connexion;
 	}
+	
 	public ClientDAO getClientDAO()
 	{
 		return new ClientDAO(this);

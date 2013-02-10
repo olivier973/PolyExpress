@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Espace commercant</title>
+<title>Catalogue</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -17,15 +17,20 @@
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
+					<li><a href="catalogueServlet">catalogue</a></li>
+					<li class="divider"></li>
 					<li><a href="deconnexion">déconnexion</a></li>
 					<li class="divider"></li>
 				</ul>
 			</div>
 		</div>
 		<div class="center_content">
-			<p><c:out value="${message}"/> <c:out value="${connexionCommercant.prenom}"/>
-				<c:out value="${connexionCommercant.nom}"/></p>
-			<p>Vous pouvez ici consulter la liste de vos produits</p>
+			<p><c:out value="${message}"/> <c:out value="${connexionClient.prenom}"/>
+				<c:out value="${connexionClient.nom}"/></p>
+			<p>Vous pouvez ici consulter la liste des produits disponibles</p>
+			<p>
+				<a href="panierServlet">Visualiser le panier</a>
+			</p>
 			<table>
 				<tr>
 					<td>Nom</td>
@@ -39,16 +44,11 @@
 						<td><c:out value="${produit.prix}" /></td>
 						<td><c:out value="${produit.quantite}" /></td>
 						<td><c:out value="${produit.description}" /></td>
-						<td><a href="supprimerProduitServlet?id=${produit.id}">Supprimer
-								le produit</a></td>
-						<td><a href="modifierProduitServlet?id=${produit.id}">Modifier
+						<td><a href="panierServlet?id=${produit.id}&ch=ajouter">Ajouter
 								le produit</a></td>
 					</tr>
 				</c:forEach>
 			</table>
-			<p>
-				<a href="ajouterProduitServlet">Ajouter un produit</a>
-			</p>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

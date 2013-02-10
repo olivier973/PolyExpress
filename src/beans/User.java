@@ -13,15 +13,6 @@ public abstract class User implements Serializable{
 	protected String prenom;
 	protected String mdp;
 	protected String email;
-	protected String coordonnee;
-
-	public String getCoordonnee() {
-		return coordonnee;
-	}
-
-	public void setCoordonnee(String coordonnee) {
-		this.coordonnee = coordonnee;
-	}
 	public String getNom() {
 		return nom;
 	}

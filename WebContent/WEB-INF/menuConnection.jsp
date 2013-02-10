@@ -21,7 +21,7 @@
 					<li class="divider"></li>
 					<li><a href="inscription">s'incrire</a></li>
 					<li class="divider"></li>
-					<li><a href="details.html">catalogue</a></li>
+					<li><a href="catalogueServlet">catalogue</a></li>
 					<li class="divider"></li>
 				</ul>
 			</div>

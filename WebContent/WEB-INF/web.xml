@@ -95,6 +95,30 @@
     <servlet-name>ModifierProduit</servlet-name>
     <url-pattern>/modifierProduitServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <servlet-name>Deconnexion</servlet-name>
+    <servlet-class>servlets.Deconnexion</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Deconnexion</servlet-name>
+    <url-pattern>/deconnexion</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>Catalogue</servlet-name>
+    <servlet-class>servlets.Catalogue</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>Catalogue</servlet-name>
+    <url-pattern>/catalogueServlet</url-pattern>
+  </servlet-mapping>
+   <servlet>
+    <servlet-name>PanierServlet</servlet-name>
+    <servlet-class>servlets.PanierServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>PanierServlet</servlet-name>
+    <url-pattern>/panierServlet</url-pattern>
+  </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
       <url-pattern>*.jsp</url-pattern>

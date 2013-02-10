@@ -1,8 +1,8 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -13,10 +13,12 @@ import javax.servlet.http.HttpSession;
 import beans.Client;
 import beans.Commercant;
 import beans.Livreur;
+import beans.Produit;
 import dao.ClientDAO;
 import dao.CommercantDAO;
 import dao.DAOFactory;
 import dao.LivreurDAO;
+import dao.ProduitDAO;
 
 /**
  * Servlet implementation class Connexion
@@ -34,9 +36,12 @@ public class Connexion extends HttpServlet {
 	private static final String JSP_LIVREUR = "/WEB-INF/livreur.jsp";
 	private static final String JSP_ERREUR = "/WEB-INF/affichageMessage.jsp";
 	private static final String SESSION_COMMERCANT = "commercants";
+	private static final String SESSION_CLIENT = "clients";
+	private static final String SESSION_LIVREUR = "livreurs";
 	private ClientDAO clientDao;
 	private CommercantDAO commercantDao;
 	private LivreurDAO livreurDao;
+	private ProduitDAO produitDao;
 	public static final String CONF_DAO_FACTORY = "daofactory";
 
 	public void init() throws ServletException {
@@ -45,6 +50,7 @@ public class Connexion extends HttpServlet {
 		this.clientDao = new ClientDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
 		this.livreurDao = new LivreurDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
 		this.commercantDao = new CommercantDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
+		this.produitDao = new ProduitDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
 	}
 
 	/**
@@ -73,6 +79,8 @@ public class Connexion extends HttpServlet {
 		String message = null;
 		String page = JSP_ERREUR;
 
+		HttpSession session = request.getSession();
+
 		if (login.trim().isEmpty() || motDePasse.trim().isEmpty()) {
 			message = MESS_CHPS_VIDES;
 		}
@@ -85,7 +93,7 @@ public class Connexion extends HttpServlet {
 			else
 			{
 				message = MESS_BON;
-				request.setAttribute("clientConnexion", client);
+				session.setAttribute("clientConnexion", client);
 				page = JSP_CLIENT;
 			}
 		}
@@ -98,7 +106,7 @@ public class Connexion extends HttpServlet {
 			else
 			{
 				message = MESS_BON;
-				request.setAttribute("livreurConnexion", livreur);
+				session.setAttribute("livreurConnexion", livreur);
 				page = JSP_LIVREUR;
 			}
 		}
@@ -111,19 +119,16 @@ public class Connexion extends HttpServlet {
 			else
 			{
 				message = MESS_BON;
-
-				HttpSession session = request.getSession();
-
 				session.setAttribute("connexionCommercant", commercant);
 				page = JSP_COMMERCANT;
 
-				Map<Integer, Commercant> commercants = (HashMap<Integer, Commercant>) session.getAttribute(SESSION_COMMERCANT);
+				/* Map<Integer, Commercant> commercants = (HashMap<Integer, Commercant>) session.getAttribute(SESSION_COMMERCANT);
 				if(commercants == null)
 				{
 					commercants = new HashMap<Integer, Commercant>();
 				}
 				commercants.put(commercant.getId(), commercant);
-				session.setAttribute(SESSION_COMMERCANT, commercants);
+				session.setAttribute(SESSION_COMMERCANT, commercants); */
 
 				/*	<c:forEach items="${sessionScope.commercants}" var="mapEntry">
 						<tr>
@@ -132,21 +137,10 @@ public class Connexion extends HttpServlet {
 						</tr>
 					</c:forEach>	*/
 
-				/*List<Produit> listeproduits = new ArrayList<Produit>();
-				ResultSet rsc;
-				if((rsc = ConnexionBdd.requete("select nom, quantite, prix, description, reference from produit where id_commercant=" + commercant.getId() + ";")) != null)
-				{
-					while (rsc.next()) {
-						Produit produit = new Produit();
-						produit.setId(rsc.getInt(5));
-						produit.setNom(rsc.getString(1));
-						produit.setPrix(rsc.getInt(3));
-						produit.setQuantite(rsc.getInt(2));
-						produit.setDescription(rsc.getString(4));
-						listeproduits.add(produit);
-					}
+				List<Produit> listeproduits = new ArrayList<Produit>();
+				if((listeproduits =(ArrayList<Produit>) produitDao.trouver(commercant.getId()))!=null) {
 					request.setAttribute("listeproduits", listeproduits);
-				}*/
+				}
 			}
 		}
 		request.setAttribute("message", message);

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import beans.Client;
 import beans.Commercant;
 import beans.Livreur;
+import beans.Produit;
 
 public class DAOUtilitaire {
 	public static <T, Object> Object map(ResultSet resultSet, T dao) throws SQLException 
@@ -30,7 +31,7 @@ public class DAOUtilitaire {
 			utilisateur.setMdp( resultSet.getString( "mdp" ));
 			utilisateur.setNom(resultSet.getString("nom"));
 			utilisateur.setCoordonnee( resultSet.getString( "coordonnee" ) ); 
-			utilisateur.setId( resultSet.getInt( "id_client" ));
+			utilisateur.setId( resultSet.getInt( "id_commercant" ));
 			utilisateur.setPrenom(resultSet.getString("prenom"));
 			return (Object) utilisateur;
 		}
@@ -40,9 +41,20 @@ public class DAOUtilitaire {
 			utilisateur.setEmail( resultSet.getString( "email" ) ); 
 			utilisateur.setMdp( resultSet.getString( "mdp" ));
 			utilisateur.setNom(resultSet.getString("nom"));
-			utilisateur.setId( resultSet.getInt( "id_client" ));
+			utilisateur.setId( resultSet.getInt( "id_livreur" ));
 			utilisateur.setPrenom(resultSet.getString("prenom"));
 			return (Object) utilisateur;
+		}
+		if(dao instanceof ProduitDAO)
+		{
+			Produit produit = new Produit();
+			produit.setCommercant( resultSet.getInt( "id_commercant" ) ); 
+			produit.setNom( resultSet.getString( "nom" ));
+			produit.setQuantite(resultSet.getInt("quantite"));
+			produit.setId( resultSet.getInt( "reference" ));
+			produit.setDescription(resultSet.getString("description"));
+			produit.setPrix(resultSet.getFloat("prix"));
+			return (Object) produit;
 		}
 		return null;
 	}
