@@ -1,23 +1,25 @@
 package beans;
 
+
 import java.io.Serializable;
 
 public class Produit implements Serializable{
 	/**
-	 * 
+	 *
+	 *
 	 */
 	private static final long serialVersionUID = 1L;
 	
 	private int id;
-	private Commercant commercant;
+	private int commercant;
 	private String nom;
 	private int quantite;
 	private String description;
 	private float prix;
-	public Commercant getCommercant() {
+	public int getCommercant() {
 		return commercant;
 	}
-	public void setCommercant(Commercant commercant) {
+	public void setCommercant(int commercant) {
 		this.commercant = commercant;
 	}
 	public String getNom() {
