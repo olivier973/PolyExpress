@@ -3,14 +3,19 @@ package servlets;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import beans.Client;
 import beans.Commercant;
+import beans.Livreur;
+import beans.Produit;
 import connexion.ConnexionBdd;
 
 /**
@@ -26,6 +31,7 @@ public class Connexion extends HttpServlet {
 	private static final String MESS_BON = "Bienvenue sur votre espace";
 	private static final String JSP_CLIENT = "/WEB-INF/client.jsp";
 	private static final String JSP_COMMERCANT = "/WEB-INF/commercant.jsp";
+	private static final String JSP_LIVREUR = "/WEB-INF/livreur.jsp";
 	private static final String JSP_ERREUR = "/WEB-INF/erreur.jsp";
 
 	/**
@@ -82,12 +88,39 @@ public class Connexion extends HttpServlet {
 						}
 						else if(type.toString().equals("commercant"))
 						{
-							System.out.println("Valeur: " + rs.getString(2) + " " + rs.getString(3));
+							System.out.println("Valeur: " + rs.getInt(1) + " " + rs.getString(2) + " " + rs.getString(3));
 							Commercant commercant = new Commercant();
+							commercant.setId(rs.getInt(1));
 							commercant.setNom(rs.getString(2));
 							commercant.setPrenom(rs.getString(3));
-							request.setAttribute("commercantConnexion", commercant);
+							HttpSession session = request.getSession();
+							session.setAttribute("connexionCommercant", commercant);
 							page = JSP_COMMERCANT;
+
+							List<Produit> listeproduits = new ArrayList<Produit>();
+							ResultSet rsc;
+							if((rsc = ConnexionBdd.requete("select nom, quantite, prix, description, reference from produit where id_commercant=" + commercant.getId() + ";")) != null)
+							{
+								while (rsc.next()) {
+									Produit produit = new Produit();
+									produit.setId(rsc.getInt(5));
+									produit.setNom(rsc.getString(1));
+									produit.setPrix(rsc.getInt(3));
+									produit.setQuantite(rsc.getInt(2));
+									produit.setDescription(rsc.getString(4));
+									listeproduits.add(produit);
+								}
+								request.setAttribute("listeproduits", listeproduits);
+							}
+						}
+						else if(type.toString().equals("livreur"))
+						{
+							System.out.println("Valeur: " + rs.getString(2) + " " + rs.getString(3));
+							Livreur livreur = new Livreur();
+							livreur.setNom(rs.getString(2));
+							livreur.setPrenom(rs.getString(3));
+							request.setAttribute("livreurConnexion", livreur);
+							page = JSP_LIVREUR;
 						}
 					}
 				} catch (SQLException e) {
@@ -95,13 +128,6 @@ public class Connexion extends HttpServlet {
 					e.printStackTrace();
 				}
 			}
-			//HttpSession session = request.getSession();
-
-			//variable de session
-			//String exemple = "abc";
-			//session.setAttribute("chaine", exemple);
-			//Récupération de l'objet depuis la session
-			//String chaine = (String)session.getAttribute("chaine");
 		}
 		request.setAttribute("message", message);
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);

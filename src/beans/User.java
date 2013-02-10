@@ -8,6 +8,7 @@ public abstract class User implements Serializable{
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	protected int id;
 	protected String nom;
 	protected String prenom;
 	protected String mdp;
@@ -35,5 +36,11 @@ public abstract class User implements Serializable{
 	}
 	public void setEmail(String email) {
 		this.email = email;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }
