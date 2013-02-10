@@ -32,11 +32,12 @@
 					<option value="client">Client</option>
 					<option value="commercant">Commerçant</option>
 					<option value="livreur">Livreur</option>
-				</select> <br /> <label for="login">Identifiant(email)</label> <input
-					type="text" id="login" name="login" value="" size="20"
-					maxlength="60" /> <br /> <label for="motdepasse">Mot de
-					passe</label> <input type="password" id="motdepasse" name="motdepasse"
-					value=""> <br /> <input type="submit" value="Connexion" />
+				</select> <br /> 
+				<label for="login">Identifiant(email)</label> 
+				<input type="text" id="login" name="login" value="" size="20" maxlength="60" /> 
+				<br /> 
+				<label for="motdepasse">Mot de passe</label> 
+				<input type="password" id="motdepasse" name="motdepasse" value=""> <br /> <input type="submit" value="Connexion" />
 				<br />
 			</form>
 		</div>

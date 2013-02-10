@@ -39,4 +39,8 @@ public class DAOFactory {
 	public void setConnexion(ConnexionBdd connexion) {
 		this.connexion = connexion;
 	}
+	public ClientDAO getClientDAO()
+	{
+		return new ClientDAO(this);
+	}
 }

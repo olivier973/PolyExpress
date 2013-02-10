@@ -77,6 +77,7 @@ public class ConnexionBdd {
 		try {
 			System.out.println(sql);
 			ResultSet rs = this.dbStatement.executeQuery(sql);
+			
 			return rs;
 		} catch (SQLException ex) {
 			System.out.println("SQL Exception Requête");
