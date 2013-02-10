@@ -21,7 +21,15 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>inscriptionc</servlet-name>
-    <url-pattern>/insciptionClient</url-pattern>
+    <url-pattern>/inscriptionClient</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>inscriptioncom</servlet-name>
+    <servlet-class>servlets.InscriptionCommercantServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>inscriptioncom</servlet-name>
+    <url-pattern>/inscriptionCommercant</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>inscription</servlet-name>
@@ -29,15 +37,23 @@
   </servlet>
   <servlet-mapping>
     <servlet-name>inscription</servlet-name>
-    <url-pattern>/insciption</url-pattern>
+    <url-pattern>/inscription</url-pattern>
   </servlet-mapping>
   <servlet>
-    <servlet-name>incriptionClient</servlet-name>
-    <servlet-class>servlets.InscriptionClientForm</servlet-class>
+    <servlet-name>inscriptionClient</servlet-name>
+    <servlet-class>servlets.InscriptionClientFormServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>inscriptionClient</servlet-name>
-    <url-pattern>/incriptionsuccess</url-pattern>
+    <url-pattern>/inscriptionsuccess</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>inscriptionCommercant</servlet-name>
+    <servlet-class>servlets.InscriptionCommercantFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>inscriptionCommercant</servlet-name>
+    <url-pattern>/inscriptioncommercantsucces</url-pattern>
   </servlet-mapping>
   <servlet>
     <servlet-name>Connexion</servlet-name>

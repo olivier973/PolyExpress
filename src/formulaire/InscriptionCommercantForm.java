@@ -3,14 +3,13 @@ package formulaire;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
+import beans.Commercant;
 import beans.User;
-
-import dao.ClientDAO;
 import dao.DAOException;
 import dao.UserDAO;
 
-public class InscriptionClientForm {
-	private UserDAO clientDAO;
+public class InscriptionCommercantForm {
+	private UserDAO commercantDAO;
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_PASS="mdp";
 	private static final String CHAMP_CONF="confirmation";
@@ -19,12 +18,12 @@ public class InscriptionClientForm {
 	private static final String CHAMP_COORDONNEE="coordonnee";
 	private String resultat;
 
-	public InscriptionClientForm(UserDAO clientDao) {
+	public InscriptionCommercantForm(UserDAO clientDao) {
 		super();
-		this.clientDAO = clientDao;
+		this.commercantDAO = clientDao;
 	}
 
-	public User inscrireClient(HttpServletRequest request) {
+	public User inscrireCommercant(HttpServletRequest request) {
 		// TODO Auto-generated method stub
 		
 		String email = getValeurChamp( request, CHAMP_EMAIL ); 
@@ -34,16 +33,16 @@ public class InscriptionClientForm {
 		String prenom = getValeurChamp(request,CHAMP_PRENOM);
 		String coordonnee = getValeurChamp(request,CHAMP_COORDONNEE);
 	
-		User client = new Client(); 
-		client.setCoordonnee(coordonnee);
-		client.setEmail(email);
-		client.setMdp(motDePasse);
-		client.setNom(nom);
-		client.setPrenom(prenom);
+		User commercant = new Commercant(); 
+		commercant.setCoordonnee(coordonnee);
+		commercant.setEmail(email);
+		commercant.setMdp(motDePasse);
+		commercant.setNom(nom);
+		commercant.setPrenom(prenom);
 		try 
 		{
 			 
-				clientDAO.creer( client); 
+				commercantDAO.creer( commercant); 
 				resultat = "Succès de l'inscription.";
 			
 			{
@@ -54,7 +53,7 @@ public class InscriptionClientForm {
 			resultat = "Échec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
 			e.printStackTrace(); 
 		}
-			return client;
+			return commercant;
 	}
 	private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
@@ -67,12 +66,13 @@ public class InscriptionClientForm {
 			
 	}
 
-	public UserDAO getClientDAO() {
-		return clientDAO;
+
+	public UserDAO getCommercantDAO() {
+		return commercantDAO;
 	}
 
-	public void setClientDAO(UserDAO client) {
-		this.clientDAO = client;
+	public void setCommercantDAO(UserDAO commercantDAO) {
+		this.commercantDAO = commercantDAO;
 	}
 
 	public String getResultat() {

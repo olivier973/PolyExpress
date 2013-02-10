@@ -20,8 +20,8 @@ public class DAOFactory {
 
 	public static DAOFactory getInstance()
 	{
-		String url = "127.0.0.1:3306/java";//"127.0.0.1:3306/java" ou "localhost:8889/java"
-		String mdp = "";//"" ou "root"
+		String url = "localhost:8889/java";//"127.0.0.1:3306/java" ou "localhost:8889/java"
+		String mdp = "root";//"" ou "root"
 		String user = "root";//"root"
 		return new DAOFactory(url, mdp, user);
 	}
@@ -42,5 +42,9 @@ public class DAOFactory {
 	public ClientDAO getClientDAO()
 	{
 		return new ClientDAO(this);
+	}
+	public CommercantDAO getCommercantDAO()
+	{
+		return new CommercantDAO(this);
 	}
 }

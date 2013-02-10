@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=windows-1252" />
-<title>Inscription</title>
+<title>InscriptionCommercant</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -35,8 +35,8 @@
             
             
               	<div >
-                <div >creer nouveau compte</div>
-                 <form name="register" action="inscriptionsuccess" method="post">          
+                <div >creer nouveau compte Commercant</div>
+                 <form name="register" action="inscriptioncommercantsucces" method="post">          
                     <fieldset>
 					<legend>Inscription</legend>
 

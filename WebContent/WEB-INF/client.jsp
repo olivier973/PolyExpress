@@ -17,7 +17,7 @@
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
-					<li><a href="register.html">s'incrire</a></li>
+					<li><a href="inscription">s'incrire</a></li>
 					<li class="divider"></li>
 					<li><a href="details.html">catalogue</a></li>
 					<li class="divider"></li>

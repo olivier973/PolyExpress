@@ -26,8 +26,8 @@
 		</div>
 		<div class="center_content">
 			
-				<p>	<a href="inscriptionc">Client</a></p>
-				<p>	<a href="incriptioncom">Commerçant</a></p>
+				<p>	<a href="inscriptionClient">Client</a></p>
+				<p>	<a href="inscriptionCommercant">Commerçant</a></p>
 				
 			
 		</div>
