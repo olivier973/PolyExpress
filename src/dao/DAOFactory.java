@@ -18,11 +18,11 @@ public class DAOFactory {
 		this.user = user;
 	}
 
-	public DAOFactory getInstance()
+	public static DAOFactory getInstance()
 	{
-		this.url = "localhost:8889/java";
-		this.mdp = "root";
-		this.user ="root";
+		String url = "localhost:8889/java";
+		String mdp = "root";
+		String user ="root";
 		return new DAOFactory(url, mdp, user);
 	}
 

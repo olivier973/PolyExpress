@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
@@ -33,6 +35,7 @@ public class Connexion extends HttpServlet {
 	private static final String JSP_COMMERCANT = "/WEB-INF/commercant.jsp";
 	private static final String JSP_LIVREUR = "/WEB-INF/livreur.jsp";
 	private static final String JSP_ERREUR = "/WEB-INF/erreur.jsp";
+	private static final String SESSION_COMMERCANT = "listeCommercantsConnectes";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -93,7 +96,19 @@ public class Connexion extends HttpServlet {
 							commercant.setId(rs.getInt(1));
 							commercant.setNom(rs.getString(2));
 							commercant.setPrenom(rs.getString(3));
+							
 							HttpSession session = request.getSession();
+							Map<Integer, Commercant> commercants = (HashMap<Integer, Commercant>)	session.getAttribute(SESSION_COMMERCANT);
+							/* Si aucune map n'existe, alors initialisation d'une nouvelle map */
+							if ( commercants == null ) {
+							commercants = new HashMap<Integer, Commercant>();
+							}
+							/* Puis ajout du commercant courant dans la map */
+							commercants.put( commercant.getId(), commercant ); //id de session courante a la place de commercant.getId()
+							/* Et enfin (ré)enregistrement de la map en session
+							*/
+							session.setAttribute( SESSION_COMMERCANT , commercants );
+							
 							session.setAttribute("connexionCommercant", commercant);
 							page = JSP_COMMERCANT;
 
