@@ -31,7 +31,7 @@ public class LivreurDAO implements UserDAO {
 		Connection connexion = null; 
 		ResultSet resultSet = null;
 		Livreur livreur = null;
-		String sql="SELECT id_livreur, nom, prenom, mdp, email FROM livreur WHERE email="+email+"and mdp=MD5("+mdp+")";
+		String sql="SELECT id_livreur, nom, prenom, mdp, email FROM livreur WHERE email='"+email+"' and mdp=sha1('"+mdp+"');";
 		try
 		{
 			/* Recuperation d'une connexion depuis la Factory */ 

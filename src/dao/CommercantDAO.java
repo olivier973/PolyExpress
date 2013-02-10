@@ -31,7 +31,7 @@ public class CommercantDAO implements UserDAO {
 		Connection connexion = null; 
 		ResultSet resultSet = null;
 		Commercant commercant = null;
-		String sql="SELECT id_commercant, nom, prenom, mdp, email, coordonnee FROM commercant WHERE email="+email+"and mdp=MD5("+mdp+")";
+		String sql="SELECT id_commercant, nom, prenom, mdp, email, coordonnee FROM commercant WHERE email='"+email+"' and mdp=sha1('"+mdp+"');";
 		try
 		{
 			/* Recuperation d'une connexion depuis la Factory */ 

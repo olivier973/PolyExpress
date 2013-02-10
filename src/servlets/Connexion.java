@@ -43,6 +43,8 @@ public class Connexion extends HttpServlet {
 		/* Récupération d'une instance de notre DAO Utilisateur
 		 */
 		this.clientDao = new ClientDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
+		this.livreurDao = new LivreurDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
+		this.commercantDao = new CommercantDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
 	}
 
 	/**

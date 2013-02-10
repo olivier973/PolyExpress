@@ -21,8 +21,8 @@ public class DAOFactory {
 	public static DAOFactory getInstance()
 	{
 		String url = "127.0.0.1:3306/java";//"127.0.0.1:3306/java" ou "localhost:8889/java"
-		String mdp = "root";//"root"
-		String user = "";//"" ou "root"
+		String mdp = "";//"" ou "root"
+		String user = "root";//"root"
 		return new DAOFactory(url, mdp, user);
 	}
 
