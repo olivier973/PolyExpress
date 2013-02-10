@@ -9,7 +9,7 @@ public class DAOFactory {
 	private String mdp;
 	private String user;
 	private ConnexionBdd connexion;
-	
+
 
 	public DAOFactory(String url, String mdp, String user) {
 		super();
@@ -17,7 +17,7 @@ public class DAOFactory {
 		this.mdp = mdp;
 		this.user = user;
 	}
-	
+
 	public DAOFactory getInstance()
 	{
 		this.url = "localhost:8889/java";
@@ -25,7 +25,7 @@ public class DAOFactory {
 		this.user ="root";
 		return new DAOFactory(url, mdp, user);
 	}
-	
+
 	public Connection getConnection()
 	{
 		connexion=new ConnexionBdd(url, user, mdp);
