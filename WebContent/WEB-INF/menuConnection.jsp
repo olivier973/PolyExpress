@@ -11,11 +11,11 @@
 	<div id="wrap">
 		<div class="header">
 			<div class="logo">
-				<a href="index.html"><h1>PolyExpress</h1></a>
+				<a href="acceuil"><h1>PolyExpress</h1></a>
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="index.html">home</a></li>
+					<li class="selected"><a href="acceuil">home</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>

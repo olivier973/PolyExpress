@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Authentification</title>
+<title>Espace livreur</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -27,20 +27,8 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<form action="connexion" method="post">
-				<p>Connectez-vous via ce formulaire</p>
-				<label for="type">Type d'utilisateur</label> <select name="type"
-					id="type">
-					<option value="client">Client</option>
-					<option value="commercant">Commerçant</option>
-					<option value="livreur">Livreur</option>
-				</select> <br /> <label for="login">Identifiant(email)</label> <input
-					type="text" id="login" name="login" value="" size="20"
-					maxlength="60" /> <br /> <label for="motdepasse">Mot de
-					passe</label> <input type="password" id="motdepasse" name="motdepasse"
-					value=""> <br /> <input type="submit" value="Connexion" />
-				<br />
-			</form>
+			<P>${message} ${livreurConnexion.prenom} ${livreurConnexion.nom}</p>
+			<p>Vous pouvez ici consulter vos messages envoyés</p>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

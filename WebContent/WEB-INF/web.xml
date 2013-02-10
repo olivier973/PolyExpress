@@ -1,28 +1,68 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" version="3.0">
-  <display-name>PolyExpress</display-name>
-  <servlet>
-    <servlet-name>Menu</servlet-name>
-    <servlet-class>servlets.menuConnection</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Menu</servlet-name>
-    <url-pattern>/acceuil</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Connexion</servlet-name>
-    <servlet-class>servlets.Connexion</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Connexion</servlet-name>
-    <url-pattern>/connexion</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <servlet-name>Authentification</servlet-name>
-    <servlet-class>servlets.Authentification</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>Authentification</servlet-name>
-    <url-pattern>/authentificationServlet</url-pattern>
-  </servlet-mapping>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://java.sun.com/xml/ns/javaee" xmlns:jsp="http://java.sun.com/xml/ns/javaee/jsp"
+	xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd"
+	xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd"
+	version="3.0">
+	<display-name>PolyExpress</display-name>
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+	<servlet>
+		<servlet-name>Menu</servlet-name>
+		<servlet-class>servlets.menuConnection</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Menu</servlet-name>
+		<url-pattern>/acceuil</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Connexion</servlet-name>
+		<servlet-class>servlets.Connexion</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Connexion</servlet-name>
+		<url-pattern>/connexion</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>Authentification</servlet-name>
+		<servlet-class>servlets.Authentification</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>Authentification</servlet-name>
+		<url-pattern>/authentificationServlet</url-pattern>
+	</servlet-mapping>
+	<servlet>
+		<servlet-name>AjouterProduit</servlet-name>
+		<servlet-class>servlets.AjouterProduit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>AjouterProduit</servlet-name>
+		<url-pattern>/ajouterProduitServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>SupprimerProduit</servlet-name>
+		<servlet-class>servlets.SupprimerProduit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SupprimerProduit</servlet-name>
+		<url-pattern>/supprimerProduitServlet</url-pattern>
+	</servlet-mapping>
+
+	<servlet>
+		<servlet-name>ModifierProduit</servlet-name>
+		<servlet-class>servlets.ModifierProduit</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifierProduit</servlet-name>
+		<url-pattern>/modifierProduitServlet</url-pattern>
+	</servlet-mapping>
+
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/taglibs.jsp</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
 </web-app>

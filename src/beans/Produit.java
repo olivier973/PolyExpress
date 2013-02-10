@@ -8,6 +8,7 @@ public class Produit implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
+	private int id;
 	private Commercant commercant;
 	private String nom;
 	private int quantite;
@@ -42,5 +43,11 @@ public class Produit implements Serializable{
 	}
 	public void setPrix(float prix) {
 		this.prix = prix;
+	}
+	public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
 	}
 }

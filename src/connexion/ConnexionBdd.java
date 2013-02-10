@@ -30,7 +30,7 @@ public class ConnexionBdd {
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
 			this.dbConnect = DriverManager.getConnection("jdbc:mysql://" + this.dbURL, this.user, this.password);
-			this.dbStatement = this.dbConnect.createStatement();
+			this.dbStatement = this.dbConnect.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_UPDATABLE);
 			return true;
 		} catch (SQLException ex) {
 			System.out.println("SQL Exception Connexion");
