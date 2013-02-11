@@ -25,9 +25,15 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<P>${message} ${clientConnexion.prenom} ${clientConnexion.nom}</p>
-			<p>Vous pouvez ici consulter vos commandes précedemment
-				effectuées</p>
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Espace Client
+			</div>
+			<div class="feat_prod_box_details">
+				<P>${message} ${clientConnexion.prenom} ${clientConnexion.nom}</p>
+				<p>Vous pouvez ici consulter vos commandes précedemment
+					effectuées</p>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

@@ -30,7 +30,7 @@ public class AjoutProduitFormServlet extends HttpServlet {
 	public static final String CONF_DAO_FACTORY = "daofactory";
 	public static final String ATT_CLIENT = "client";
 	public static final String ATT_FORM  = "form";
-	public static final String VUE= "/WEB-INF/commercant.jsp";
+	public static final String VUE= "/acceuil";
 	
 	private CommercantDAO commercantDao;
 	private ProduitDAO produitDao;
@@ -61,11 +61,11 @@ public class AjoutProduitFormServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		/* Préparation de l'objet formulaire */
+		/* PreÌ�paration de l'objet formulaire */
 		
 		AjoutProduitForm form = new AjoutProduitForm(this.produitDao,this.commercantDao);
 		
-		/* traitement de la requête et récupération du bean en résultant */
+		/* traitement de la requeÌ‚te et reÌ�cupeÌ�ration du bean en reÌ�sultant */
 		Produit produit = form.AjouterProduit(request);
 		/* Stockage du formulaire et du bean dans l'objet request*/
 		

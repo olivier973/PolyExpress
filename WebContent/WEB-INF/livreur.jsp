@@ -23,8 +23,14 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<P>${message} ${livreurConnexion.prenom} ${livreurConnexion.nom}</p>
-			<p>Vous pouvez ici consulter vos messages envoyés</p>
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Espace livreur
+			</div>
+			<div class="feat_prod_box_details">
+				<P>${message} ${livreurConnexion.prenom} ${livreurConnexion.nom}</p>
+				<p>Vous pouvez ici consulter vos messages envoyés</p>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

@@ -25,20 +25,26 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<form action="connexion" method="post">
-				<p>Connectez-vous via ce formulaire</p>
-				<label for="type">Type d'utilisateur</label> <select name="type"
-					id="type">
-					<option value="client">Client</option>
-					<option value="commercant">Commerçant</option>
-					<option value="livreur">Livreur</option>
-				</select> <br /> <label for="login">Identifiant(email)</label> <input
-					type="text" id="login" name="login" value="" size="20"
-					maxlength="60" /> <br /> <label for="motdepasse">Mot de
-					passe</label> <input type="password" id="motdepasse" name="motdepasse"
-					value=""> <br /> <input type="submit" value="Connexion" />
-				<br />
-			</form>
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Connexion
+			</div>
+			<div class="feat_prod_box_details">
+				<form action="connexion" method="post">
+					<p>Connectez-vous via ce formulaire</p>
+					<label for="type">Type d'utilisateur</label> <select name="type"
+						id="type">
+						<option value="client">Client</option>
+						<option value="commercant">Commerçant</option>
+						<option value="livreur">Livreur</option>
+					</select> <br /> <label for="login">Identifiant(email)</label> <input
+						type="text" id="login" name="login" value="" size="20"
+						maxlength="60" /> <br /> <label for="motdepasse">Mot de
+						passe</label> <input type="password" id="motdepasse" name="motdepasse"
+						value=""> <br /> <input type="submit" value="Connexion" />
+					<br />
+				</form>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

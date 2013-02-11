@@ -25,30 +25,68 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<p><c:out value="${message}"/> <c:out value="${connexionClient.prenom}"/>
-				<c:out value="${connexionClient.nom}"/></p>
-			<p>Vous pouvez ici consulter la liste des produits disponibles</p>
-			<p>
-				<a href="panierServlet">Visualiser le panier</a>
-			</p>
-			<table>
-				<tr>
-					<td>Nom</td>
-					<td>Prix</td>
-					<td>Quantité</td>
-					<td>Description</td>
-				</tr>
-				<c:forEach var="produit" items="${listeproduits}">
-					<tr>
-						<td><c:out value="${produit.nom}" /></td>
-						<td><c:out value="${produit.prix}" /></td>
-						<td><c:out value="${produit.quantite}" /></td>
-						<td><c:out value="${produit.description}" /></td>
-						<td><a href="panierServlet?id=${produit.id}&ch=ajouter">Ajouter
-								le produit</a></td>
-					</tr>
-				</c:forEach>
-			</table>
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Catalogue
+			</div>
+			<div class="feat_prod_box_details">
+				<p>
+					<c:out value="${message}" />
+					<c:out value="${connexionClient.prenom}" />
+					<c:out value="${connexionClient.nom}" />
+				</p>
+				<p>Vous pouvez ici consulter la liste des produits disponibles</p>
+				<p>
+					<a href="panierServlet">Visualiser le panier</a>
+				</p>
+				<div class="left_content">
+
+					<div class="title">
+						<span class="title_icon"><img src="images/bullet1.gif"
+							alt="" title="" /></span>Produits
+					</div>
+
+					<c:forEach var="produit" items="${listeproduits}">
+						<div class="feat_prod_box">
+
+							<div class="prod_img">
+								<img src="images/<c:out value="${produit.nom}" />.jpg" alt=""
+									title="" border="0" />
+							</div>
+
+							<div class="prod_det_box">
+								<div class="box_top"></div>
+								<div class="box_center">
+									<div class="prod_title">
+										<c:out value="${produit.nom}" />
+									</div>
+									<p class="details">
+										<c:out value="${produit.description}" />
+									</p>
+									<p class="details">
+										Prix :
+										<c:out value="${produit.prix}" />
+										euro(s)
+									</p>
+									<p class="details">
+										Quantité :
+										<c:out value="${produit.quantite}" />
+										unité(s)
+									</p>
+									<a href="panierServlet?id=${produit.id}&ch=ajouter"
+										class="more">- Ajouter le produit -</a>
+									<div class="clear"></div>
+								</div>
+
+								<div class="box_bottom"></div>
+							</div>
+							<div class="clear"></div>
+						</div>
+					</c:forEach>
+
+				</div>
+				<div class="clear"></div>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

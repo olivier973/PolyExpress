@@ -27,26 +27,26 @@ public class ProduitDAO {
 		/*requete sql pour inserer un utilisateur dans la base*/
 		String sql="INSERT INTO produit VALUES (null,'"+produit.getCommercant()+"','"+produit.getNom()+"','"+produit.getQuantite()+"','"+produit.getPrix()+"','"+produit.getDescription()+"');";
 		/*requete sql pour recuperer l'id du client nouvellement creer*/
-		String id="SELECT id_produit FROM produit WHERE nom='"+produit.getNom()+"' and description='"+produit.getDescription()+"';";
+		String id="SELECT reference FROM produit WHERE nom='"+produit.getNom()+"' and description='"+produit.getDescription()+"';";
 		try 
 		{
-			/* Récupération d'une connexion depuis la Factory */ 
+			/* ReÌ�cupeÌ�ration d'une connexion depuis la Factory */ 
 			connexion = daoFactory.getConnection();
 			int statut= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
-			/* Analyse du statut retourné par la requête d'insertion */ 
+			/* Analyse du statut retourneÌ� par la requeÌ‚te d'insertion */ 
 			if ( statut==0) 
 			{
-				throw new DAOException( "echec � la creation du prouit, aucune ligne ajouter dans la table." );
+				throw new DAOException( "echec ˆ la creation du prouit, aucune ligne ajouter dans la table." );
 			}
-			/* Récupération de l'id auto-généré par la requête d'insertion */
+			/* ReÌ�cupeÌ�ration de l'id auto-geÌ�neÌ�reÌ� par la requeÌ‚te d'insertion */
 			resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{
-				/* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
+				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
 				produit.setId( resultat.getInt("reference") ); 
 			} else 
 			{
-				throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
+				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
 			}
 		} catch ( SQLException e )
 		{

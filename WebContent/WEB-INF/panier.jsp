@@ -25,33 +25,44 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<p><c:out value="${message}"/> <c:out value="${connexionClient.prenom}"/>
-				<c:out value="${connexionClient.nom}"/></p>
-			<p>Vous pouvez ici consulter la liste de vos produits</p>
-			<p>
-				<a href="catalogueServlet">Retourner à la liste des produits</a>
-			</p>
-			<table>
-				<tr>
-					<td>Nom</td>
-					<td>Prix</td>
-					<td>Quantité</td>
-					<td>Description</td>
-				</tr>
-				<c:forEach var="produit" items="${listepanier}">
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Panier
+			</div>
+			<div class="feat_prod_box_details">
+				<p>
+					<c:out value="${message}" />
+					<c:out value="${connexionClient.prenom}" />
+					<c:out value="${connexionClient.nom}" />
+				</p>
+				<p>Vous pouvez ici consulter la liste de vos produits</p>
+				<p>
+					<a href="catalogueServlet">Retourner à la liste des produits</a>
+				</p>
+				<table>
 					<tr>
-						<td><c:out value="${produit.nom}" /></td>
-						<td><c:out value="${produit.prix}" /></td>
-						<td><c:out value="${produit.description}" /></td>
-						<td><a href="panierServlet?id=${produit.id}&ch=supprimer">Supprimer
-								le produit</a></td>
+						<td>Nom</td>
+						<td>Prix</td>
+						<td>Quantité</td>
+						<td>Description</td>
 					</tr>
-				</c:forEach>
-				<p><c:out value="${montant}"/></p>
-			</table>
-			<p>
-				<a href="">Valider le panier</a>
-			</p>
+					<c:forEach var="produit" items="${listepanier}">
+						<tr>
+							<td><c:out value="${produit.nom}" /></td>
+							<td><c:out value="${produit.prix}" /></td>
+							<td><c:out value="${produit.description}" /></td>
+							<td><a href="panierServlet?id=${produit.id}&ch=supprimer">Supprimer
+									le produit</a></td>
+						</tr>
+					</c:forEach>
+					<p>
+						<c:out value="${montant}" />
+					</p>
+				</table>
+				<p>
+					<a href="">Valider le panier</a>
+				</p>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

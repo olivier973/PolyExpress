@@ -99,6 +99,7 @@ public class PanierServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("montant", montant);
+			request.setAttribute("message", MESS_BON);
 			session.setAttribute("listepanier", listepanier);
 		}
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);
