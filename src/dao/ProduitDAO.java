@@ -22,7 +22,39 @@ public class ProduitDAO {
 
 	public void creer(Produit produit) throws DAOException {
 		// TODO Auto-generated method stub
-
+		Connection connexion = null; 
+		ResultSet resultat=null;
+		/*requete sql pour inserer un utilisateur dans la base*/
+		String sql="INSERT INTO produit VALUES (null,'"+produit.getCommercant()+"','"+produit.getNom()+"','"+produit.getQuantite()+"','"+produit.getPrix()+"','"+produit.getDescription()+"');";
+		/*requete sql pour recuperer l'id du client nouvellement creer*/
+		String id="SELECT id_produit FROM produit WHERE nom='"+produit.getNom()+"' and description='"+produit.getDescription()+"';";
+		try 
+		{
+			/* Récupération d'une connexion depuis la Factory */ 
+			connexion = daoFactory.getConnection();
+			int statut= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
+			/* Analyse du statut retourné par la requête d'insertion */ 
+			if ( statut==0) 
+			{
+				throw new DAOException( "echec � la creation du prouit, aucune ligne ajouter dans la table." );
+			}
+			/* Récupération de l'id auto-généré par la requête d'insertion */
+			resultat = daoFactory.getConnexion().exec(id);
+			if ( resultat.next() ) 
+			{
+				/* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
+				produit.setId( resultat.getInt("reference") ); 
+			} else 
+			{
+				throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
+			}
+		} catch ( SQLException e )
+		{
+			throw new DAOException( e ); 
+		} finally 
+		{
+			fermeturesSilencieuses( resultat,daoFactory.getConnexion().getDbStatement(),  connexion );
+		}
 	}
 
 	public int decrementer(String id) throws DAOException {

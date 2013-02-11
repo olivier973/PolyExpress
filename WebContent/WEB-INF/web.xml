@@ -79,6 +79,14 @@
     <servlet-name>AjouterProduit</servlet-name>
     <url-pattern>/ajouterProduitServlet</url-pattern>
   </servlet-mapping>
+   <servlet>
+    <servlet-name>AjouterProduitFormServlet</servlet-name>
+    <servlet-class>servlets.AjouterProduitFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AjouterProduitFormServlet</servlet-name>
+    <url-pattern>/produitsucces</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>SupprimerProduit</servlet-name>
     <servlet-class>servlets.SupprimerProduit</servlet-class>
@@ -111,7 +119,7 @@
     <servlet-name>Catalogue</servlet-name>
     <url-pattern>/catalogueServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>PanierServlet</servlet-name>
     <servlet-class>servlets.PanierServlet</servlet-class>
   </servlet>
