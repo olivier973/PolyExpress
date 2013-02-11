@@ -119,13 +119,21 @@
     <servlet-name>Catalogue</servlet-name>
     <url-pattern>/catalogueServlet</url-pattern>
   </servlet-mapping>
-   <servlet>
+  <servlet>
     <servlet-name>PanierServlet</servlet-name>
     <servlet-class>servlets.PanierServlet</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>PanierServlet</servlet-name>
     <url-pattern>/panierServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ValidationPanier</servlet-name>
+    <servlet-class>servlets.ValidationPanier</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValidationPanier</servlet-name>
+    <url-pattern>/validationPanierServlet</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>

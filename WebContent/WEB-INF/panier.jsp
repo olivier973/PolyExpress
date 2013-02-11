@@ -60,7 +60,7 @@
 					</p>
 				</table>
 				<p>
-					<a href="">Valider le panier</a>
+					<a href="validationPanierServlet">Valider le panier</a>
 				</p>
 			</div>
 		</div>
