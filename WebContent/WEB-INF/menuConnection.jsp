@@ -5,7 +5,6 @@
 	content="text/html; charset=windows-1252" />
 <title>PolyExpress</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
-
 </head>
 <body>
 	<div id="wrap">
@@ -37,12 +36,10 @@
 
 				<c:forEach var="produit" items="${listeproduits}">
 					<div class="feat_prod_box">
-
 						<div class="prod_img">
 							<img src="images/<c:out value="${produit.nom}" />.jpg" alt=""
 								title="" border="0" />
 						</div>
-
 						<div class="prod_det_box">
 							<div class="box_top"></div>
 							<div class="box_center">
@@ -53,21 +50,20 @@
 									<c:out value="${produit.description}" />
 								</p>
 								<p class="details">
-									Prix : <c:out value="${produit.prix}" /> euro(s)
+									Prix :
+									<c:out value="${produit.prix}" />
+									euro(s)
 								</p>
 								<div class="clear"></div>
 							</div>
-
 							<div class="box_bottom"></div>
 						</div>
 						<div class="clear"></div>
 					</div>
 				</c:forEach>
-
 			</div>
 			<div class="clear"></div>
 		</div>
-
 		<div class="footer">
 			<div class="left_footer">
 				<p>CYRILLE-NEZAN</p>

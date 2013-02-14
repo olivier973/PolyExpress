@@ -26,18 +26,13 @@
 
 		</div>
 	</div>
-
-
 	<div class="center_content">
 
 		<div class="title">
 			<span class="title_icon"><img src="images/bullet1.gif" alt=""
 				title="" /></span>Register
 		</div>
-
 		<div class="feat_prod_box_details">
-
-
 			<div>
 				<div>Ajouter nouveau produit</div>
 				<form name="register" action="produitsucces" method="post">
@@ -75,20 +70,11 @@
 							<label for="description">Description</label> <input type="text"
 								id="description" name="description" size="30" maxlength="100" />
 						</div>
-
-
-
 						<div>
 							<input type="submit" class="register" value="ajout" />
 						</div>
 				</form>
-
-
 			</div>
-
-
-
-
 			<div class="footer">
 				<div class="left_footer">
 					<p>CYRILLE-NEZAN</p>

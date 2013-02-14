@@ -59,30 +59,19 @@
 							<label for="mdp">Mot de passe</label> <input type="text" id="mdp"
 								name="mdp" size="30" maxlength="30" />
 						</div>
-
 						<div>
 							<label for="nom">Nom</label> <input type="text" id="nom"
 								name="nom" size="30" maxlength="100" />
 						</div>
-
 						<div>
 							<label for="prenom">Prenom</label> <input type="text" id="prenom"
 								name="prenom" size="30" maxlength="100" />
 						</div>
-
-
-
-
 						<div>
 							<input type="submit" class="register" value="inscription" />
 						</div>
 				</form>
-
-
 			</div>
-
-
-
 
 			<div class="footer">
 				<div class="left_footer">

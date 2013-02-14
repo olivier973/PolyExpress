@@ -2,7 +2,6 @@ package formulaire;
 
 import javax.servlet.http.HttpServletRequest;
 
-import beans.Client;
 import beans.Produit;
 import beans.User;
 import dao.CommercantDAO;
@@ -19,7 +18,7 @@ public class AjoutProduitForm {
 	private static final String CHAMP_DESCRIPTION="description";
 	private static final String CHAMP_PRIX="prix";
 	private static final String CHAMP_QUANTITE="quantite";
-	
+
 	private String resultat;
 
 	public AjoutProduitForm(ProduitDAO produitDao,CommercantDAO commercantDao) {
@@ -30,7 +29,7 @@ public class AjoutProduitForm {
 
 	public Produit AjouterProduit(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		
+
 		String email = getValeurChamp( request, CHAMP_EMAIL ); 
 		String motDePasse = getValeurChamp( request, CHAMP_PASS );
 		String confirmation = getValeurChamp( request, CHAMP_CONF ); 
@@ -47,19 +46,19 @@ public class AjoutProduitForm {
 		produit.setQuantite(new Integer(quantite));
 		try 
 		{
-			 
-				produitDAO.creer( produit); 
-				resultat = "Succès de l'inscription.";
-			
+
+			produitDAO.creer( produit); 
+			resultat = "SucceÌ€s de l'inscription.";
+
 			{
-				resultat = "Échec de l'inscription."; }
-		} 
+				resultat = "EÌ�chec de l'inscription."; }
+		}
 		catch ( DAOException e ) 
 		{
-			resultat = "Échec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
+			resultat = "EÌ�chec de l'inscription : une erreur impreÌ�vue est survenue, merci de reÌ�essayer dans quelques instants.";
 			e.printStackTrace(); 
 		}
-			return produit;
+		return produit;
 	}
 	private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
@@ -69,10 +68,8 @@ public class AjoutProduitForm {
 		} else {
 			return valeur.trim();
 		}
-			
-	}
 
-	
+	}
 
 	public ProduitDAO getProduitDAO() {
 		return produitDAO;

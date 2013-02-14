@@ -32,7 +32,6 @@ font-style:italic;
 p.more_details{
 padding:25px 20px 0px 20px;
 font-size:11px;
-
 }
 #wrap{
 width:900px;
@@ -126,8 +125,6 @@ margin:2px 0 5px 0;
 span.colors{
 padding:2px 2px 0 2px;
 }
-
-
 /*------------------------------------center content--------------------*/
 .center_content{
 width:900px;
@@ -183,7 +180,6 @@ width:170px;
 float:left;
 padding:10px 0 0 0;
 }
-
 /*--------feat_prod_box-----------*/
 .feat_prod_box{
 padding:10px 0 10px 10px;
@@ -222,7 +218,6 @@ width:295px;
 height:9px;
 background:url(images/box_bottom.gif) no-repeat center top;
 }
-
 .new_prod_box{
 float:left;
 text-align:center;
@@ -261,7 +256,6 @@ padding:10px 0 0 0;
 clear:both;
 padding:0px;
 }
-
 ul.list{
 clear:both;
 padding:10px 0 0 20px;
@@ -281,21 +275,17 @@ padding:0 0 0 17px;
 ul.list li a:hover{
 text-decoration:underline;
 }
-
 /* demo */
-
 div.demolayout {
 width:460px;
 margin: 0 0 20px 0;
 }
-
 ul.demolayout {
 list-style-type: none;
 float: left;
 margin:0px;
 padding:0px;
 }
-
 ul.demolayout li {
 margin: 0 10px 0 0;
 float: left;
@@ -315,18 +305,15 @@ background: #eee;
 text-decoration: none;
 font-weight: bold;
 }
-
 ul.demolayout a:hover {
 background: #fff;
 }
-
 ul.demolayout a.active {
 background: #fff;
 padding-bottom: 5px;
 cursor: default;
 color:#11819E;
 }
-
 .tabs-container {
 clear: left;
 padding:0px;
@@ -521,7 +508,6 @@ float:left;
 clear:both;
 font-size:10px;
 }
-
 div.pagination a {
 padding: 2px 5px 2px 5px;
 margin-right: 2px;
@@ -566,5 +552,3 @@ text-decoration:none;
 padding:0 5px 0 5px;
 color:#797979;
 }
-
-

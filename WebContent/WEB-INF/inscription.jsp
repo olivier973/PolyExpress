@@ -25,11 +25,12 @@
 			</div>
 		</div>
 		<div class="center_content">
-			
-				<p>	<a href="inscriptionClient">Client</a></p>
-				<p>	<a href="inscriptionCommercant">Commerçant</a></p>
-				
-			
+			<p>
+				<a href="inscriptionClient">Client</a>
+			</p>
+			<p>
+				<a href="inscriptionCommercant">Commerçant</a>
+			</p>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

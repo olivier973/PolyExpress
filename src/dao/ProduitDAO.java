@@ -132,7 +132,7 @@ public class ProduitDAO {
 		Connection connexion = null; 
 		ResultSet resultSet = null;
 		Produit produit = null;
-		String sql="SELECT * FROM Produit where reference='" + id + "';";
+		String sql="SELECT * FROM produit where reference='" + id + "';";
 		try
 		{
 			/* Recuperation d'une connexion depuis la Factory */
@@ -160,7 +160,7 @@ public class ProduitDAO {
 		ResultSet resultSet = null;
 		Produit produit = null;
 		List<Produit> listeproduits = new ArrayList<Produit>();
-		String sql="SELECT * FROM Produit where quantite>0;";
+		String sql="SELECT * FROM produit where quantite>0;";
 		try
 		{
 			/* Recuperation d'une connexion depuis la Factory */
@@ -189,7 +189,7 @@ public class ProduitDAO {
 		ResultSet resultSet = null;
 		Produit produit = null;
 		List<Produit> listeproduits = new ArrayList<Produit>();
-		String sql="SELECT * FROM Produit where id_commercant='" + id_commercant + "';";
+		String sql="SELECT * FROM produit where id_commercant='" + id_commercant + "';";
 		try
 		{
 			/* Recuperation d'une connexion depuis la Factory */
