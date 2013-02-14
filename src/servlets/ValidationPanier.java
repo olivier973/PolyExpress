@@ -58,7 +58,10 @@ public class ValidationPanier extends HttpServlet {
 			}
 			float montant = 0;
 			request.setAttribute("montant", montant);
+			
 			session.setAttribute("listepanier", listepanier);
+			System.out.println(montant);
+			System.out.println(listepanier);
 		}
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}

@@ -69,6 +69,11 @@
 							<label for="prenom">Prenom</label> <input type="text" id="prenom"
 								name="prenom" size="30" maxlength="100" />
 						</div>
+						
+						<div>
+							<label for="coordonne">Coordonnee</label> <input type="text" id="coordonnee"
+								name="coordonnee" size="30" maxlength="100" />
+						</div>
 
 
 
