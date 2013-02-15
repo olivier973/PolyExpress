@@ -1,9 +1,10 @@
 package formulaire;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+import beans.Commercant;
 import beans.Produit;
-import beans.User;
 import dao.CommercantDAO;
 import dao.DAOException;
 import dao.ProduitDAO;
@@ -11,15 +12,13 @@ import dao.ProduitDAO;
 public class AjoutProduitForm {
 	private ProduitDAO produitDAO;
 	private CommercantDAO commercantDAO;
-	private static final String CHAMP_EMAIL = "email";
-	private static final String CHAMP_PASS="mdp";
-	private static final String CHAMP_CONF="confirmation";
+	private Commercant commercant;
 	private static final String CHAMP_NOM="nom";
 	private static final String CHAMP_DESCRIPTION="description";
 	private static final String CHAMP_PRIX="prix";
 	private static final String CHAMP_QUANTITE="quantite";
 
-	private String resultat;
+	private Produit produit;
 
 	public AjoutProduitForm(ProduitDAO produitDao,CommercantDAO commercantDao) {
 		super();
@@ -27,38 +26,73 @@ public class AjoutProduitForm {
 		this.commercantDAO=commercantDao;
 	}
 
-	public Produit AjouterProduit(HttpServletRequest request) {
+	public boolean AjouterProduit(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-
-		String email = getValeurChamp( request, CHAMP_EMAIL ); 
-		String motDePasse = getValeurChamp( request, CHAMP_PASS );
-		String confirmation = getValeurChamp( request, CHAMP_CONF ); 
+		float prixf;
+		int quantitei;
+		boolean resultat = true;
 		String nom = getValeurChamp( request, CHAMP_NOM );
 		String description = getValeurChamp(request,CHAMP_DESCRIPTION);
 		String prix = getValeurChamp(request,CHAMP_PRIX);
 		String quantite = getValeurChamp(request,CHAMP_QUANTITE);
-		User commercant= this.commercantDAO.trouver(email, motDePasse);
-		Produit produit=new Produit();
+		HttpSession session = request.getSession();
+		commercant = (Commercant) session.getAttribute("connexionCommercant");
+		produit=new Produit();
 		produit.setCommercant(commercant.getId());
 		produit.setDescription(description);
 		produit.setNom(nom);
-		produit.setPrix(new Float(prix));
-		produit.setQuantite(new Integer(quantite));
-		try 
+		if(description==null || nom==null || prix==null || quantite==null)
 		{
+			return false;
+		}
+		else
+		{
+			try {
+				prixf = Float.parseFloat(prix);
+				if(prixf<1 || prixf>1000)
+				{
+					resultat = false;
+				}
+				else
+				{
+					produit.setPrix(prixf);
+				}
+			} catch ( NumberFormatException e ) {
+				return false;
+			}
 
-			produitDAO.creer( produit); 
-			resultat = "SucceÌ€s de l'inscription.";
+			try {
+				quantitei = Integer.parseInt(quantite);
+				if(quantitei<1 || quantitei>1000)
+				{
+					resultat = false;
+				}
+				else
+				{
+					produit.setQuantite(quantitei);
+				}
+			} catch ( NumberFormatException e ) {
+				return false;
+			}
 
+			if(resultat!=false)
 			{
-				resultat = "EÌ�chec de l'inscription."; }
+				try 
+				{
+					produitDAO.creer(produit);
+					return true;
+				}
+				catch ( DAOException e ) 
+				{
+					e.printStackTrace();
+					return false;
+				}
+			}
+			else
+			{
+				return resultat;
+			}
 		}
-		catch ( DAOException e ) 
-		{
-			resultat = "EÌ�chec de l'inscription : une erreur impreÌ�vue est survenue, merci de reÌ�essayer dans quelques instants.";
-			e.printStackTrace(); 
-		}
-		return produit;
 	}
 	private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
@@ -68,7 +102,6 @@ public class AjoutProduitForm {
 		} else {
 			return valeur.trim();
 		}
-
 	}
 
 	public ProduitDAO getProduitDAO() {
@@ -86,12 +119,10 @@ public class AjoutProduitForm {
 	public void setCommercantDAO(CommercantDAO commercantDAO) {
 		this.commercantDAO = commercantDAO;
 	}
-
-	public String getResultat() {
-		return resultat;
+	public Produit getProduit() {
+		return produit;
 	}
-
-	public void setResultat(String resultat) {
-		this.resultat = resultat;
+	public void setProduit(Produit produit) {
+		this.produit = produit;
 	}
 }

@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>PolyExpress</title>
+<title>Message</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -13,7 +13,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -25,7 +25,13 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<p>${message}</p>
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Message
+			</div>
+			<div class="feat_prod_box_details">
+				<p>${message}</p>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

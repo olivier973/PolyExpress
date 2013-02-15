@@ -13,7 +13,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -30,7 +30,7 @@
 					title="" /></span>Espace Client
 			</div>
 			<div class="feat_prod_box_details">
-				<P>${message} ${clientConnexion.prenom} ${clientConnexion.nom}</p>
+				<p>${message} ${clientConnexion.prenom} ${clientConnexion.nom}</p>
 				<p>Vous pouvez ici consulter vos commandes précedemment
 					effectuées</p>
 			</div>

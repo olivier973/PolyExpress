@@ -13,7 +13,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -30,19 +30,34 @@
 					title="" /></span>Connexion
 			</div>
 			<div class="feat_prod_box_details">
-				<form action="connexion" method="post">
-					<p>Connectez-vous via ce formulaire</p>
-					<label for="type">Type d'utilisateur</label> <select name="type"
-						id="type">
-						<option value="client">Client</option>
-						<option value="commercant">Commerçant</option>
-						<option value="livreur">Livreur</option>
-					</select> <br /> <label for="login">Identifiant(email)</label> <input
-						type="text" id="login" name="login" value="" size="20"
-						maxlength="60" /> <br /> <label for="motdepasse">Mot de
-						passe</label> <input type="password" id="motdepasse" name="motdepasse"
-						value=""> <br /> <input type="submit" value="Connexion" />
-					<br />
+				<form name="register" action="connexion" method="post">
+					<fieldset>
+						<p>${message}</p>
+						<p>Connectez-vous via ce formulaire</p>
+						<div>
+							<label for="type">Type d'utilisateur</label> <select name="type"
+								id="type">
+								<option value="client">Client</option>
+								<option value="commercant">Commerçant</option>
+								<option value="livreur">Livreur</option>
+							</select>
+						</div>
+
+						<div>
+							<label for="login">Identifiant(email)</label> <input type="text"
+								id="login" name="login" value="${login}" size="20"
+								maxlength="60" />
+						</div>
+
+						<div>
+							<label for="motdepasse">Mot de passe</label> <input
+								type="password" id="motdepasse" name="motdepasse" value="">
+						</div>
+
+						<div>
+							<input type="submit" class="register" value="Connexion" />
+						</div>
+					</fieldset>
 				</form>
 			</div>
 		</div>

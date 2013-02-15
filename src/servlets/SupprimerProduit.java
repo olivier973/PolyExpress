@@ -27,7 +27,7 @@ public class SupprimerProduit extends HttpServlet {
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur
 		 */
-		this.produitDao = new ProduitDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
+		this.produitDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getProduitDAO();
 	}
 
 	/**

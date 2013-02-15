@@ -13,7 +13,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -45,15 +45,12 @@
 						<span class="title_icon"><img src="images/bullet1.gif"
 							alt="" title="" /></span>Produits
 					</div>
-
 					<c:forEach var="produit" items="${listeproduits}">
 						<div class="feat_prod_box">
-
 							<div class="prod_img">
 								<img src="images/<c:out value="${produit.nom}" />.jpg" alt=""
 									title="" border="0" />
 							</div>
-
 							<div class="prod_det_box">
 								<div class="box_top"></div>
 								<div class="box_center">
@@ -77,13 +74,11 @@
 										class="more">- Ajouter le produit -</a>
 									<div class="clear"></div>
 								</div>
-
 								<div class="box_bottom"></div>
 							</div>
 							<div class="clear"></div>
 						</div>
 					</c:forEach>
-
 				</div>
 				<div class="clear"></div>
 			</div>

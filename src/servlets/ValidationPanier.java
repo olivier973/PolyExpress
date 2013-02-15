@@ -1,7 +1,6 @@
 package servlets;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -10,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import beans.Client;
 import beans.Produit;
 
 /**
@@ -23,14 +23,14 @@ public class ValidationPanier extends HttpServlet {
 	public static final String SESSION_COMMERCANT = "connexionCommercant";
 	public static final String SESSION_LIVREUR = "livreurConnexion";
 	public static final String SESSION_CLIENT = "clientConnexion";
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ValidationPanier() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ValidationPanier() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -38,9 +38,9 @@ public class ValidationPanier extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String page = PAGE_CONNEXION;
-		
+
 		HttpSession session = request.getSession();
-		
+
 		if(session.getAttribute(SESSION_COMMERCANT)!=null || session.getAttribute(SESSION_LIVREUR)!=null)
 		{
 			session.invalidate();
@@ -50,18 +50,16 @@ public class ValidationPanier extends HttpServlet {
 			request.setAttribute("message", MESS_BON);
 			page = PAGE;
 			
+			Client client = (Client) session.getAttribute("clientConnexion");
+
 			List<Produit> listepanier;
 			listepanier = (List<Produit>) session.getAttribute("listepanier");
-			if(listepanier != null)
-			{
-				listepanier = new ArrayList<Produit>();
-			}
-			float montant = 0;
-			request.setAttribute("montant", montant);
 			
-			session.setAttribute("listepanier", listepanier);
-			System.out.println(montant);
-			System.out.println(listepanier);
+			/*if(listepanier != null)
+			{
+				listepanier = null;
+			}
+			session.setAttribute("listepanier", listepanier);*/
 		}
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}
@@ -72,5 +70,4 @@ public class ValidationPanier extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
 }

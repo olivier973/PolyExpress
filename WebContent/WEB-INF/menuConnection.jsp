@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type"
 	content="text/html; charset=windows-1252" />
-<title>PolyExpress</title>
+<title>Bienvenue</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -14,7 +14,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -25,15 +25,12 @@
 				</ul>
 			</div>
 		</div>
-
 		<div class="center_content">
 			<div class="left_content">
-
 				<div class="title">
 					<span class="title_icon"><img src="images/bullet1.gif"
 						alt="" title="" /></span>Produits
 				</div>
-
 				<c:forEach var="produit" items="${listeproduits}">
 					<div class="feat_prod_box">
 						<div class="prod_img">

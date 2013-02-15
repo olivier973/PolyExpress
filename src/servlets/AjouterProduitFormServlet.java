@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import beans.Produit;
 import dao.CommercantDAO;
 import dao.DAOFactory;
 import dao.ProduitDAO;
@@ -17,17 +16,17 @@ import formulaire.AjoutProduitForm;
  * Servlet implementation class AjoutProduitFormServlet
  */
 
-public class AjoutProduitFormServlet extends HttpServlet {
+public class AjouterProduitFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-
 	public static final String CONF_DAO_FACTORY = "daofactory";
-	public static final String ATT_CLIENT = "client";
+	public static final String ATT_PRODUIT = "produit";
 	public static final String ATT_FORM  = "form";
-	public static final String VUE= "/ajoutProduit.jsp";
+	public static final String VUE_PROD= "/WEB-INF/ajoutProduit.jsp";
+	public static final String JSP_COMMERCANT = "/authentificationServlet";
 
 	private CommercantDAO commercantDao;
 	private ProduitDAO produitDao;
@@ -37,7 +36,7 @@ public class AjoutProduitFormServlet extends HttpServlet {
 		this.commercantDao=((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getCommercantDAO();
 		this.produitDao=((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getProduitDAO();
 	}
-	public AjoutProduitFormServlet() {
+	public AjouterProduitFormServlet() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -46,9 +45,7 @@ public class AjoutProduitFormServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stu
-		/* affichage de la page d'inscription */
-		this.getServletContext().getRequestDispatcher(VUE).forward(request, response);
+		// TODO Auto-generated method stub
 	}
 
 	/**
@@ -61,11 +58,18 @@ public class AjoutProduitFormServlet extends HttpServlet {
 		AjoutProduitForm form = new AjoutProduitForm(this.produitDao,this.commercantDao);
 
 		/* traitement de la requeÌ‚te et reÌ�cupeÌ�ration du bean en reÌ�sultant */
-		Produit produit = form.AjouterProduit(request);
-		/* Stockage du formulaire et du bean dans l'objet request*/
-
-		request.setAttribute( ATT_FORM, form);
-		request.setAttribute( ATT_CLIENT, produit);
-		this.doGet(request, response);
+		String page = null;
+		boolean res;
+		res = form.AjouterProduit(request);
+		if(res==false)
+		{
+			request.setAttribute(ATT_PRODUIT, form.getProduit());
+			page = VUE_PROD;
+		}
+		else
+		{
+			page = JSP_COMMERCANT;
+		}
+		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}
 }

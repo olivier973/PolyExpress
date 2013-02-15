@@ -84,11 +84,11 @@
 		<url-pattern>/ajouterProduitServlet</url-pattern>
 	</servlet-mapping>
 	<servlet>
-		<servlet-name>AjoutProduitFormServlet</servlet-name>
-		<servlet-class>servlets.AjoutProduitFormServlet</servlet-class>
+		<servlet-name>AjouterProduitFormServlet</servlet-name>
+		<servlet-class>servlets.AjouterProduitFormServlet</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>AjoutProduitFormServlet</servlet-name>
+		<servlet-name>AjouterProduitFormServlet</servlet-name>
 		<url-pattern>/produitsucces</url-pattern>
 	</servlet-mapping>
 	<servlet>

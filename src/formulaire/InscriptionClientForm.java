@@ -3,9 +3,6 @@ package formulaire;
 import javax.servlet.http.HttpServletRequest;
 
 import beans.Client;
-import beans.User;
-
-import dao.ClientDAO;
 import dao.DAOException;
 import dao.UserDAO;
 
@@ -13,49 +10,60 @@ public class InscriptionClientForm {
 	private UserDAO clientDAO;
 	private static final String CHAMP_EMAIL = "email";
 	private static final String CHAMP_PASS="mdp";
-	private static final String CHAMP_CONF="confirmation";
 	private static final String CHAMP_NOM="nom";
 	private static final String CHAMP_PRENOM="prenom";
 	private static final String CHAMP_COORDONNEE="coordonnee";
-	private String resultat;
+	private Client client;
 
 	public InscriptionClientForm(UserDAO clientDao) {
 		super();
 		this.clientDAO = clientDao;
 	}
 
-	public User inscrireClient(HttpServletRequest request) {
+	public boolean inscrireClient(HttpServletRequest request) {
 		// TODO Auto-generated method stub
-		
+
+		boolean resultat = true;
+
 		String email = getValeurChamp( request, CHAMP_EMAIL ); 
 		String motDePasse = getValeurChamp( request, CHAMP_PASS );
-		String confirmation = getValeurChamp( request, CHAMP_CONF ); 
 		String nom = getValeurChamp( request, CHAMP_NOM );
 		String prenom = getValeurChamp(request,CHAMP_PRENOM);
 		String coordonnee = getValeurChamp(request,CHAMP_COORDONNEE);
-	
-		User client = new Client(); 
+
+		client = new Client(); 
 		client.setCoordonnee(coordonnee);
 		client.setEmail(email);
 		client.setMdp(motDePasse);
 		client.setNom(nom);
 		client.setPrenom(prenom);
-		try 
+
+		if(coordonnee==null || nom==null || email==null || prenom==null || motDePasse==null)
 		{
-			 
-				clientDAO.creer( client); 
-				resultat = "Succès de l'inscription.";
-			
-			{
-				resultat = "Échec de l'inscription."; }
-		} 
-		catch ( DAOException e ) 
-		{
-			resultat = "Échec de l'inscription : une erreur imprévue est survenue, merci de réessayer dans quelques instants.";
-			e.printStackTrace(); 
+			return false;
 		}
-			return client;
+		else
+		{
+			if(resultat!=false)
+			{
+				try 
+				{
+					clientDAO.creer(client);
+					return true;
+				}
+				catch ( DAOException e ) 
+				{
+					e.printStackTrace();
+					return false;
+				}
+			}
+			else
+			{
+				return resultat;
+			}
+		}		
 	}
+
 	private static String getValeurChamp( HttpServletRequest request, String nomChamp ) {
 		String valeur = request.getParameter( nomChamp );
 		if ( valeur == null || valeur.trim().length() == 0 )
@@ -64,7 +72,6 @@ public class InscriptionClientForm {
 		} else {
 			return valeur.trim();
 		}
-			
 	}
 
 	public UserDAO getClientDAO() {
@@ -75,11 +82,11 @@ public class InscriptionClientForm {
 		this.clientDAO = client;
 	}
 
-	public String getResultat() {
-		return resultat;
+	public Client getClient() {
+		return client;
 	}
 
-	public void setResultat(String resultat) {
-		this.resultat = resultat;
+	public void setClient(Client client) {
+		this.client = client;
 	}
 }

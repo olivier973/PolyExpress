@@ -13,7 +13,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -50,18 +50,23 @@
 						<tr>
 							<td><c:out value="${produit.nom}" /></td>
 							<td><c:out value="${produit.prix}" /></td>
+							<td><c:out value="${produit.quantite}" /></td>
 							<td><c:out value="${produit.description}" /></td>
 							<td><a href="panierServlet?id=${produit.id}&ch=supprimer">Supprimer
 									le produit</a></td>
 						</tr>
 					</c:forEach>
-					<p>
-						<c:out value="${montant}" />
-					</p>
 				</table>
 				<p>
-					<a href="validationPanierServlet">Valider le panier</a>
+					Montant total du panier :
+					<c:out value="${montant}" />
+					euro(s)
 				</p>
+				<c:if test="${montant!=0}">
+					<p>
+						<a href="validationPanierServlet">Valider le panier</a>
+					</p>
+				</c:if>
 			</div>
 		</div>
 		<div class="footer">

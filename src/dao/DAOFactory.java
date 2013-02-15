@@ -26,8 +26,8 @@ public class DAOFactory {
 
 	public static DAOFactory getInstance()
 	{
-		String url = URL_O; // URL_B ou URL_O
-		String mdp = IDENT; // MDP_B ou IDENT
+		String url = URL_B; // URL_B ou URL_O
+		String mdp = MDP_B; // MDP_B ou IDENT
 		String user = IDENT;
 		return new DAOFactory(url, mdp, user);
 	}
@@ -57,5 +57,9 @@ public class DAOFactory {
 	public ProduitDAO getProduitDAO()
 	{
 		return new ProduitDAO(this);
+	}
+	public LivreurDAO getLivreurDAO()
+	{
+		return new LivreurDAO(this);
 	}
 }

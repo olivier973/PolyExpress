@@ -417,7 +417,7 @@ border:1px #DFDFDF solid;
 float:left;
 }
 input.register{
-width:71px;
+width:80px;
 height:25px;
 border:none;
 cursor:pointer;
@@ -551,4 +551,27 @@ padding:10px 250px 0 0;
 text-decoration:none;
 padding:0 5px 0 5px;
 color:#797979;
+}
+/*---------------formulaire--------------------*/
+fieldset {
+padding: 10px;
+border: 1px #0568CD solid;
+margin: 10px;
+}
+legend {
+font-weight: bold;
+color: #0568CD;
+}
+form label {
+float: left;
+width: 200px;
+margin: 3px 0px 0px 0px;
+}
+form input {
+margin: 3px 3px 0px 0px;
+border: 1px #999 solid;
+}
+form select {
+margin: 3px 3px 0px 0px;
+border: 1px #999 solid;
 }

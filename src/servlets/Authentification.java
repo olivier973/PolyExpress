@@ -20,9 +20,6 @@ import dao.ProduitDAO;
  */
 public class Authentification extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	/* private static final String SESSION_COMMERCANT = "commercants";
-	private static final String SESSION_CLIENT = "clients";
-	private static final String SESSION_LIVREUR = "livreurs"; */
 	private static final String JSP_CLIENT = "/WEB-INF/client.jsp";
 	private static final String JSP_COMMERCANT = "/WEB-INF/commercant.jsp";
 	private static final String JSP_LIVREUR = "/WEB-INF/livreur.jsp";
@@ -37,7 +34,7 @@ public class Authentification extends HttpServlet {
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur
 		 */
-		this.produitDao = new ProduitDAO((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY));
+		this.produitDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getProduitDAO();
 	}
 
 	/**
@@ -89,6 +86,7 @@ public class Authentification extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		this.doGet(request, response);
 	}
 
 }

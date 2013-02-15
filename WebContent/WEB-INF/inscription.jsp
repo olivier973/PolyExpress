@@ -13,7 +13,7 @@
 			</div>
 			<div id="menu">
 				<ul>
-					<li class="selected"><a href="acceuil">home</a></li>
+					<li class="selected"><a href="acceuil">accueil</a></li>
 					<li class="divider"></li>
 					<li><a href="authentificationServlet">mon compte</a></li>
 					<li class="divider"></li>
@@ -25,12 +25,18 @@
 			</div>
 		</div>
 		<div class="center_content">
-			<p>
-				<a href="inscriptionClient">Client</a>
-			</p>
-			<p>
-				<a href="inscriptionCommercant">Commerçant</a>
-			</p>
+			<div class="title">
+				<span class="title_icon"><img src="images/bullet1.gif" alt=""
+					title="" /></span>Création de compte
+			</div>
+			<div class="feat_prod_box_details">
+				<p>
+					<a href="inscriptionClient">Client</a>
+				</p>
+				<p>
+					<a href="inscriptionCommercant">Commerçant</a>
+				</p>
+			</div>
 		</div>
 		<div class="footer">
 			<div class="left_footer">

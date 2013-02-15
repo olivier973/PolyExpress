@@ -26,27 +26,27 @@ public class ClientDAO implements UserDAO {
 		/*requete sql pour inserer un utilisateur dans la base*/
 		String sql="INSERT INTO client VALUES (null,'"+client.getNom()+"','"+client.getPrenom()+"',sha1('"+client.getMdp()+"'),'"+client.getEmail()+"','"+client.getCoordonnee()+"');";
 		/*requete sql pour recuperer l'id du client nouvellement creer*/
-		String id="SELECT id_client FROM client WHERE email='"+client.getEmail()+"' and mdp=sha1('"+client.getMdp()+"');";
+		//String id="SELECT id_client FROM client WHERE email='"+client.getEmail()+"' and mdp=sha1('"+client.getMdp()+"');";
 		try 
 		{
-			/* Récupération d'une connexion depuis la Factory */ 
+			/* ReÌ�cupeÌ�ration d'une connexion depuis la Factory */ 
 			connexion = daoFactory.getConnection();
 			int statut= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
-			/* Analyse du statut retourné par la requête d'insertion */ 
+			/* Analyse du statut retourneÌ� par la requeÌ‚te d'insertion */ 
 			if ( statut==0) 
 			{
-				throw new DAOException( "Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table." );
+				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur, aucune ligne ajouteÌ�e dans la table." );
 			}
-			/* Récupération de l'id auto-généré par la requête d'insertion */
-			resultat = daoFactory.getConnexion().exec(id);
+			/* ReÌ�cupeÌ�ration de l'id auto-geÌ�neÌ�reÌ� par la requeÌ‚te d'insertion */
+			/*resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
-			{
-				/* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
-				client.setId( resultat.getInt("id_client") ); 
+			{*/
+				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+				/*client.setId( resultat.getInt("id_client") ); 
 			} else 
 			{
-				throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
-			}
+				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
+			}*/
 		} catch ( SQLException e )
 		{
 			throw new DAOException( e ); 

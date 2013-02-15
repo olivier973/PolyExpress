@@ -22,12 +22,47 @@ public class ProduitDAO {
 
 	public void creer(Produit produit) throws DAOException {
 		// TODO Auto-generated method stub
-		Connection connexion = null; 
+		Connection connexion = null;
 		ResultSet resultat=null;
-		/*requete sql pour inserer un utilisateur dans la base*/
+		/*requete sql pour inserer un produit dans la base*/
 		String sql="INSERT INTO produit VALUES (null,'"+produit.getCommercant()+"','"+produit.getNom()+"','"+produit.getQuantite()+"','"+produit.getPrix()+"','"+produit.getDescription()+"');";
-		/*requete sql pour recuperer l'id du client nouvellement creer*/
-		String id="SELECT reference FROM produit WHERE nom='"+produit.getNom()+"' and description='"+produit.getDescription()+"';";
+		/*requete sql pour recuperer l'id du produit*/
+		//String id="SELECT reference FROM produit WHERE nom='"+produit.getNom()+"' and description='"+produit.getDescription()+"';";
+		try 
+		{
+			/* ReÌ�cupeÌ�ration d'une connexion depuis la Factory */ 
+			connexion = daoFactory.getConnection();
+			int statut= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
+			/* Analyse du statut retourneÌ� par la requeÌ‚te d'insertion */ 
+			if ( statut==0)
+			{
+				throw new DAOException( "echec à la creation du produit, aucune ligne ajouter dans la table." );
+			}
+			/* ReÌ�cupeÌ�ration de l'id auto-geÌ�neÌ�reÌ� par la requeÌ‚te d'insertion */
+			/*resultat = daoFactory.getConnexion().exec(id);
+			if ( resultat.next() ) 
+			{*/
+			/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+			/*produit.setId(resultat.getInt("reference") );
+			} else 
+			{
+				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
+			}*/
+		} catch ( SQLException e )
+		{
+			throw new DAOException( e ); 
+		} finally 
+		{
+			fermeturesSilencieuses( resultat,daoFactory.getConnexion().getDbStatement(),  connexion );
+		}
+	}
+
+	public void modifier(Produit produit) throws DAOException {
+		// TODO Auto-generated method stub
+		Connection connexion = null;
+		ResultSet resultat=null;
+		/*requete sql pour inserer un produit dans la base*/
+		String sql="UPDATE produit set nom='"+produit.getNom()+"' and quantite='"+produit.getQuantite()+"' and prix='"+produit.getPrix()+"' and description='"+produit.getDescription()+"' where reference='"+produit.getId()+"';";
 		try 
 		{
 			/* ReÌ�cupeÌ�ration d'une connexion depuis la Factory */ 
@@ -39,21 +74,12 @@ public class ProduitDAO {
 				throw new DAOException( "echec ˆ la creation du prouit, aucune ligne ajouter dans la table." );
 			}
 			/* ReÌ�cupeÌ�ration de l'id auto-geÌ�neÌ�reÌ� par la requeÌ‚te d'insertion */
-			resultat = daoFactory.getConnexion().exec(id);
-			if ( resultat.next() ) 
-			{
-				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
-				produit.setId( resultat.getInt("reference") ); 
-			} else 
-			{
-				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
-			}
 		} catch ( SQLException e )
 		{
 			throw new DAOException( e ); 
 		} finally 
 		{
-			fermeturesSilencieuses( resultat,daoFactory.getConnexion().getDbStatement(),  connexion );
+			fermeturesSilencieuses(resultat,daoFactory.getConnexion().getDbStatement(), connexion);
 		}
 	}
 
@@ -152,7 +178,7 @@ public class ProduitDAO {
 		}
 		return produit;
 	}
-	
+
 	public List<Produit> trouver() throws DAOException {
 		// TODO Auto-generated method stub
 
