@@ -75,6 +75,11 @@ public class Authentification extends HttpServlet {
 		{
 			message = MESS_BON;
 			page = JSP_LIVREUR;
+			
+			/*List<Message> listemessages = new ArrayList<Message>();
+			if((listemessages =(ArrayList<Message>) messageDAO.trouver())!=null) {
+				requete.setAttribute("listemessages", listemessages);
+			}*/
 		}
 
 		request.setAttribute("message", message);

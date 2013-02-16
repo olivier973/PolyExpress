@@ -98,6 +98,11 @@ public class ConnexionUtilisateurForm {
 					message = MESS_BON;
 					session.setAttribute("livreurConnexion", livreur);
 					page = JSP_LIVREUR;
+					
+					/*List<Message> listemessages = new ArrayList<Message>();
+					if((listemessages =(ArrayList<Message>) messageDAO.trouver())!=null) {
+						requete.setAttribute("listemessages", listemessages);
+					}*/
 				}
 			}
 			catch ( DAOException e ) 

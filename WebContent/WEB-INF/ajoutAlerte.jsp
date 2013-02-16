@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Espace livreur</title>
+<title>Ajouter une alerte</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -29,30 +29,27 @@
 		<div class="center_content">
 			<div class="title">
 				<span class="title_icon"><img src="images/bullet1.gif" alt=""
-					title="" /></span>Espace livreur
+					title="" /></span>Ajouter une alerte
 			</div>
 			<div class="feat_prod_box_details">
-				<P>
-					<c:out value="${message}" />
-					<c:out value="${livreurConnexion.prenom}" />
-					<c:out value="${livreurConnexion.nom}" />
-				</p>
-				<p>Vous pouvez ici consulter la liste des alertes</p>
-				<table>
-					<tr>
-						<td>Numéro du message</td>
-						<td>Contenu</td>
-					</tr>
-					<c:forEach var="message" items="${listemessages}">
-						<tr>
-							<td><c:out value="${message.id}" /></td>
-							<td><c:out value="${message.texte_traffic}" /></td>
-						</tr>
-					</c:forEach>
-				</table>
-				<p>
-					<a href="declarerIncidentServlet">Déclarer un incident</a>
-				</p>
+				<form name="register" action="alertesucces" method="post">
+					<fieldset>
+						<!-- legend>Produit</legend -->
+						<p>Vous pouvez ajouter une alerte via ce formulaire.</p>
+						<p>
+							<a href="authentificationServlet">Retourner à la liste des alertes</a>
+						</p>
+
+						<div>
+							<label for="texte">Description</label> <input type="text"
+								id="texte" name="texte" size="30" maxlength="100" value="" />
+						</div>
+
+						<div>
+							<input type="submit" class="register" value="Ajouter" />
+						</div>
+					</fieldset>
+				</form>
 			</div>
 		</div>
 		<div class="footer">

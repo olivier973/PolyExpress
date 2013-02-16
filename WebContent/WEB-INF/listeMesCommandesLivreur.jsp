@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Espace livreur</title>
+<title>Liste de mes commandes</title>
 <link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
@@ -29,30 +29,34 @@
 		<div class="center_content">
 			<div class="title">
 				<span class="title_icon"><img src="images/bullet1.gif" alt=""
-					title="" /></span>Espace livreur
+					title="" /></span>Liste de mes commandes
 			</div>
 			<div class="feat_prod_box_details">
-				<P>
-					<c:out value="${message}" />
-					<c:out value="${livreurConnexion.prenom}" />
-					<c:out value="${livreurConnexion.nom}" />
-				</p>
-				<p>Vous pouvez ici consulter la liste des alertes</p>
+				<p>Vous pouvez ici consulter la liste de vos commandes</p>
 				<table>
 					<tr>
-						<td>Numéro du message</td>
-						<td>Contenu</td>
+						<td>Numéro commande</td>
+						<td>Montant</td>
+						<td>Adresse de livraison</td>
+						<td>Etat</td>
 					</tr>
-					<c:forEach var="message" items="${listemessages}">
+					<c:forEach var="commande" items="${listecommandes}">
 						<tr>
-							<td><c:out value="${message.id}" /></td>
-							<td><c:out value="${message.texte_traffic}" /></td>
+							<td><c:out value="${commande.numero_commande}" /></td>
+							<td><c:out value="${commande.montant}" /></td>
+							<td><c:out value="${commande.adresse_livraison}" /></td>
+							<c:choose>
+								<c:when test="${commande.etat == 'en_cours'}">
+									<td><a href="validerLivraisonServlet?id=${commande.id}">Valider
+											la livraison</a></td>
+								</c:when>
+								<c:otherwise>
+									<td><c:out value="${commande.etat}" /></td>
+								</c:otherwise>
+							</c:choose>
 						</tr>
 					</c:forEach>
 				</table>
-				<p>
-					<a href="declarerIncidentServlet">Déclarer un incident</a>
-				</p>
 			</div>
 		</div>
 		<div class="footer">

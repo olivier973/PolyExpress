@@ -88,13 +88,13 @@
     <url-pattern>/produitsucces</url-pattern>
   </servlet-mapping>
   <servlet>
-		<servlet-name>ModifierProduitFormServlet</servlet-name>
-		<servlet-class>servlets.ModifierProduitFormServlet</servlet-class>
-	</servlet>
-	<servlet-mapping>
-		<servlet-name>ModifierProduitFormServlet</servlet-name>
-		<url-pattern>/produitsuccesmodification</url-pattern>
-	</servlet-mapping>
+    <servlet-name>ModifierProduitFormServlet</servlet-name>
+    <servlet-class>servlets.ModifierProduitFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ModifierProduitFormServlet</servlet-name>
+    <url-pattern>/produitsuccesmodification</url-pattern>
+  </servlet-mapping>
   <servlet>
     <servlet-name>SupprimerProduit</servlet-name>
     <servlet-class>servlets.SupprimerProduit</servlet-class>
@@ -142,6 +142,54 @@
   <servlet-mapping>
     <servlet-name>ValidationPanier</servlet-name>
     <url-pattern>/validationPanierServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeclarerIncident</servlet-name>
+    <servlet-class>servlets.DeclarerIncident</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeclarerIncident</servlet-name>
+    <url-pattern>/declarerIncidentServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ListeCommandesLivreur</servlet-name>
+    <servlet-class>servlets.ListeCommandesLivreur</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListeCommandesLivreur</servlet-name>
+    <url-pattern>/listeCommandesLivreurServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ListeMesCommandesLivreur</servlet-name>
+    <servlet-class>servlets.ListeMesCommandesLivreur</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ListeMesCommandesLivreur</servlet-name>
+    <url-pattern>/listeMesCommandesLivreurServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>DeclarerIncidentFormServlet</servlet-name>
+    <servlet-class>servlets.DeclarerIncidentFormServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>DeclarerIncidentFormServlet</servlet-name>
+    <url-pattern>/alertesucces</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>ValiderLivraison</servlet-name>
+    <servlet-class>servlets.ValiderLivraison</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>ValiderLivraison</servlet-name>
+    <url-pattern>/validerLivraisonServlet</url-pattern>
+  </servlet-mapping>
+  <servlet>
+    <servlet-name>AttributionLivraison</servlet-name>
+    <servlet-class>servlets.AttributionLivraison</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>AttributionLivraison</servlet-name>
+    <url-pattern>/attributionLivraisonServlet</url-pattern>
   </servlet-mapping>
   <jsp-config>
     <jsp-property-group>
