@@ -60,18 +60,20 @@ public class ProduitDAO {
 	public void modifier(Produit produit) throws DAOException {
 		// TODO Auto-generated method stub
 		Connection connexion = null;
+		int valide;
 		ResultSet resultat=null;
 		/*requete sql pour inserer un produit dans la base*/
-		String sql="UPDATE produit set nom='"+produit.getNom()+"' and quantite='"+produit.getQuantite()+"' and prix='"+produit.getPrix()+"' and description='"+produit.getDescription()+"' where reference='"+produit.getId()+"';";
+		String sql="update produit set nom='"+produit.getNom()+"', quantite='"+produit.getQuantite()+"', prix='"+produit.getPrix()+"', description='"+produit.getDescription()+"' where reference='"+produit.getId()+"';";
+		System.out.println(sql);
 		try 
 		{
 			/* ReÌ�cupeÌ�ration d'une connexion depuis la Factory */ 
 			connexion = daoFactory.getConnection();
-			int statut= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
+			valide= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
 			/* Analyse du statut retourneÌ� par la requeÌ‚te d'insertion */ 
-			if ( statut==0) 
+			if ( valide==0)
 			{
-				throw new DAOException( "echec ˆ la creation du prouit, aucune ligne ajouter dans la table." );
+				throw new DAOException( "echec de la modification du prouit, aucune ligne modifiée dans la table." );
 			}
 			/* ReÌ�cupeÌ�ration de l'id auto-geÌ�neÌ�reÌ� par la requeÌ‚te d'insertion */
 		} catch ( SQLException e )
