@@ -6,27 +6,26 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-import beans.Commande;
-import beans.User;
+import beans.ListeObjets;;
 
-public class CommandeDAO {
+public class ListeObjetsDAO {
 	private DAOFactory daoFactory;
 
-	public CommandeDAO(DAOFactory daoFactory) {
+	public ListeObjetsDAO(DAOFactory daoFactory) {
 		super();
 		this.daoFactory = daoFactory;
 	}
 
-	public void creer(Commande commande) throws DAOException {
+	public void creer(ListeObjets listeObjets) throws DAOException {
 		// TODO Auto-generated method stub
 		Connection connexion = null; 
 		ResultSet resultat=null;
-		commande.setEtat("Prise en charge par nos livreurs");
+	
 		
 		/*requete sql pour inserer un utilisateur dans la base*/
-		String sql="INSERT INTO commande VALUES (null,'"+commande.getDestinataire()+"','"+commande.getAdresse_livraison()+"','"+commande.getMontant()+"','"+commande.getEtat()+"');";
-		/*requete sql pour recuperer l'id du client nouvellement creer*/
-		String id="SELECT numero_commande FROM commande WHERE destinataire='"+commande.getDestinataire()+"' and adresse_livraison='"+commande.getAdresse_livraison()+"' and montant='"+commande.getMontant()+ "' and etat='"+commande.getEtat()+"';";
+		String sql="INSERT INTO commande VALUES (null,'"+listeObjets.getId_penseBete()+"','"+listeObjets.getId_objet()+"');";
+		/*requete sql pour recuperer l'id de listeObjets nouvellement creer*/
+		String id="SELECT id_list FROM listeobjets WHERE id_pense_bete='"+listeObjets.getId_penseBete()+"'and id_objet='"+listeObjets.getId_objet()+"';";
 		try 
 		{
 			/* Récupération d'une connexion depuis la Factory */ 
@@ -42,7 +41,7 @@ public class CommandeDAO {
 			if ( resultat.next() ) 
 			{
 				/* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
-				commande.setId( resultat.getInt("numero_commande") ); 
+				listeObjets.setId( resultat.getInt("id_list") ); 
 			} else 
 			{
 				throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );

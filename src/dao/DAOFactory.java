@@ -62,4 +62,16 @@ public class DAOFactory {
 	{
 		return new LivreurDAO(this);
 	}
+	public CommandeDAO getCommandeDAO()
+	{
+		return new CommandeDAO(this);
+	}
+	public PenseBeteDAO getPenseBeteDAO()
+	{
+		return new PenseBeteDAO(this);
+	}
+	public ListeObjetsDAO getListeObjetsDAO()
+	{
+		return new ListeObjetsDAO(this);
+	}
 }

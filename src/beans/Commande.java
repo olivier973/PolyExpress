@@ -4,7 +4,7 @@ public class Commande {
 	private int id;
 	private int destinataire;
 	private String adresse_livraison;
-	private int montant;
+	private float montant;
 	
 	public int getId() {
 		return id;
@@ -24,10 +24,10 @@ public class Commande {
 	public void setAdresse_livraison(String adresse_livraison) {
 		this.adresse_livraison = adresse_livraison;
 	}
-	public int getMontant() {
+	public float getMontant() {
 		return montant;
 	}
-	public void setMontant(int montant) {
+	public void setMontant(float montant) {
 		this.montant = montant;
 	}
 	public String getEtat() {

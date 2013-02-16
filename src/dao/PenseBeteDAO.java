@@ -7,26 +7,26 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 import beans.Commande;
-import beans.User;
+import beans.PenseBete;
 
-public class CommandeDAO {
+public class PenseBeteDAO {
 	private DAOFactory daoFactory;
 
-	public CommandeDAO(DAOFactory daoFactory) {
+	public PenseBeteDAO(DAOFactory daoFactory) {
 		super();
 		this.daoFactory = daoFactory;
 	}
 
-	public void creer(Commande commande) throws DAOException {
+	public void creer(PenseBete penseBete) throws DAOException {
 		// TODO Auto-generated method stub
 		Connection connexion = null; 
 		ResultSet resultat=null;
-		commande.setEtat("Prise en charge par nos livreurs");
+	
 		
 		/*requete sql pour inserer un utilisateur dans la base*/
-		String sql="INSERT INTO commande VALUES (null,'"+commande.getDestinataire()+"','"+commande.getAdresse_livraison()+"','"+commande.getMontant()+"','"+commande.getEtat()+"');";
+		String sql="INSERT INTO commande VALUES (null,'"+penseBete.getId_commande()+"',null);";
 		/*requete sql pour recuperer l'id du client nouvellement creer*/
-		String id="SELECT numero_commande FROM commande WHERE destinataire='"+commande.getDestinataire()+"' and adresse_livraison='"+commande.getAdresse_livraison()+"' and montant='"+commande.getMontant()+ "' and etat='"+commande.getEtat()+"';";
+		String id="SELECT id_pense_bete FROM pensebete WHERE id_commande='"+penseBete.getId_commande()+"';";
 		try 
 		{
 			/* Récupération d'une connexion depuis la Factory */ 
@@ -42,7 +42,7 @@ public class CommandeDAO {
 			if ( resultat.next() ) 
 			{
 				/* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
-				commande.setId( resultat.getInt("numero_commande") ); 
+				penseBete.setId( resultat.getInt("id_pense_bete") ); 
 			} else 
 			{
 				throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
