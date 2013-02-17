@@ -22,7 +22,7 @@ public class ListeObjetsDAO {
 		ResultSet resultat=null;
 	
 		
-		/*requete sql pour inserer un utilisateur dans la base*/
+		/*requete sql pour inserer une liste d'objet dans la base*/
 		String sql="INSERT INTO listeobjets VALUES (null,'"+listeObjets.getId_penseBete()+"','"+listeObjets.getId_objet()+"');";
 		/*requete sql pour recuperer l'id de listeObjets nouvellement creer*/
 		//String id="SELECT id_list FROM listeobjets WHERE id_pense_bete='"+listeObjets.getId_penseBete()+"'and id_objet='"+listeObjets.getId_objet()+"';";
@@ -41,7 +41,7 @@ public class ListeObjetsDAO {
 			resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{
-				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+				/* Puis initialisation de la proprieÌ�teÌ� id du bean ListeObjet avec sa valeur */
 				listeObjets.setId( resultat.getInt("id_list") ); 
 			} else 
 			{

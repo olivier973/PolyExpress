@@ -42,7 +42,7 @@ public class ProduitDAO {
 			/*resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{*/
-			/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+			/* Puis initialisation de la proprieÌ�teÌ� id du bean produit avec sa valeur */
 			/*produit.setId(resultat.getInt("reference") );
 			} else 
 			{

@@ -25,9 +25,9 @@ public class CommandeDAO {
 		ResultSet resultat=null;
 		commande.setEtat("Prise en charge par nos livreurs");
 
-		/*requete sql pour inserer un utilisateur dans la base*/
+		/*requete sql pour inserer une commande dans la base*/
 		String sql="INSERT INTO commande VALUES (null,'"+commande.getDestinataire()+"','"+commande.getAdresse_livraison()+"','"+commande.getMontant()+"','"+commande.getEtat()+"');";
-		/*requete sql pour recuperer l'id du client nouvellement creer*/
+		/*requete sql pour recuperer l'id d une commande nouvellement creer*/
 		//String id="SELECT numero_commande FROM commande WHERE destinataire='"+commande.getDestinataire()+"' and adresse_livraison='"+commande.getAdresse_livraison()+"' and montant='"+commande.getMontant()+ "' and etat='"+commande.getEtat()+"';";
 		String id="SELECT LAST_INSERT_ID() as numero_commande";
 		try 

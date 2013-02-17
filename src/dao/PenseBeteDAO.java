@@ -22,9 +22,9 @@ public class PenseBeteDAO {
 		ResultSet resultat=null;
 		System.out.println("commande:"+penseBete.getId_commande());
 
-		/*requete sql pour inserer un utilisateur dans la base*/
+		/*requete sql pour inserer un pense bete dans la base*/
 		String sql="INSERT INTO pensebete VALUES (null,'"+penseBete.getId_commande()+"',null);";
-		/*requete sql pour recuperer l'id du client nouvellement creer*/
+		/*requete sql pour recuperer l'id du pense bete nouvellement creer*/
 		//String id="SELECT id_pense_bete FROM pensebete WHERE id_commande='"+penseBete.getId_commande()+"';";
 		String id="SELECT LAST_INSERT_ID() as id_pense_bete";
 		try 
@@ -41,7 +41,7 @@ public class PenseBeteDAO {
 			resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{
-				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+				/* Puis initialisation de la proprieÌ�teÌ� id du bean PenseBete avec sa valeur */
 				penseBete.setId( resultat.getInt("id_pense_bete") ); 
 			} else 
 			{

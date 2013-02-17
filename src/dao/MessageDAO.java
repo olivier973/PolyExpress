@@ -24,9 +24,9 @@ public class MessageDAO {
 		Connection connexion = null; 
 		ResultSet resultat=null;
 
-		/*requete sql pour inserer un utilisateur dans la base*/
+		/*requete sql pour inserer un Message dans la base*/
 		String sql="INSERT INTO message VALUES (null,'"+msg.getId_livreur()+"','"+msg.getMsg()+"');";
-		/*requete sql pour recuperer l'id du client nouvellement creer*/
+		/*requete sql pour recuperer l'id du message nouvellement creer*/
 		//String id="SELECT id_msg FROM message WHERE id_livreur='"+msg.getId_livreur()+"' and texte_traffic='"+msg.getMsg()+"';";
 		try 
 		{
@@ -42,11 +42,11 @@ public class MessageDAO {
 			/*resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{*/
-			/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+			/* Puis initialisation de la proprieÌ�teÌ� id du bean Lessage avec sa valeur */
 			/*msg.setId( resultat.getInt("id_msg") ); 
 			} else 
 			{
-				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
+				throw new DAOException( "EÌ�chec de la creÌ�ation d un meessage en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
 			}*/
 		} catch ( SQLException e )
 		{

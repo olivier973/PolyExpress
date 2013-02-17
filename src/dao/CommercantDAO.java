@@ -23,9 +23,9 @@ public class CommercantDAO implements UserDAO {
 		// TODO Auto-generated method stub
 		Connection connexion = null; 
 		ResultSet resultat=null;
-		/*requete sql pour inserer un utilisateur dans la base*/
+		/*requete sql pour inserer un commercant dans la base*/
 		String sql="INSERT INTO commercant VALUES (null,'"+commercant.getNom()+"','"+commercant.getPrenom()+"',sha1('"+commercant.getMdp()+"'),'"+commercant.getEmail()+"','"+commercant.getCoordonnee()+"');";
-		/*requete sql pour recuperer l'id du client nouvellement creer*/
+		/*requete sql pour recuperer l'id dun commercant nouvellement creer*/
 		//String id="SELECT id_commercant FROM commercant WHERE email='"+commercant.getEmail()+"' and mdp=sha1('"+commercant.getMdp()+"');";
 		try 
 		{
@@ -41,7 +41,7 @@ public class CommercantDAO implements UserDAO {
 			/*resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{*/
-				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
+				/* Puis initialisation de la proprieÌ�teÌ� id du bean Commercant avec sa valeur */
 				/*commercant.setId( resultat.getInt("id_commercant") ); 
 			} else 
 			{
