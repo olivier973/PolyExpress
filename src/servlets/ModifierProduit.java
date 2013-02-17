@@ -24,36 +24,52 @@ public class ModifierProduit extends HttpServlet {
 	private ProduitDAO produitDao;
 	public static final String CONF_DAO_FACTORY = "daofactory";
 	
+	public static final String SESSION_COMMERCANT = "connexionCommercant";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
+
+	public static final String PAGE_CONNEXION = "/authentificationServlet";
+
 	public void init() throws ServletException {
 		/* Récupération d'une instance de notre DAO Utilisateur
 		 */
 		this.produitDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getProduitDAO();
 	}
-       
-    /**
-     * @see HttpServlet#HttpServlet()
-     */
-    public ModifierProduit() {
-        super();
-        // TODO Auto-generated constructor stub
-    }
+
+	/**
+	 * @see HttpServlet#HttpServlet()
+	 */
+	public ModifierProduit() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		String id = request.getParameter(CHAMP_ID);
-		String page = JSP_MODIF;
-
+		String page = PAGE_CONNEXION;
 		HttpSession session = request.getSession();
-		Commercant commercant;
-		if((commercant = (Commercant) session.getAttribute("connexionCommercant"))!=null)
+
+		if(session.getAttribute(SESSION_CLIENT)!=null || session.getAttribute(SESSION_LIVREUR)!=null)
 		{
-			Produit produit;
-			if((produit = produitDao.trouver(id))!=null) {
-				request.setAttribute("produit", produit);
+			session.invalidate();
+		}
+		else if(session.getAttribute(SESSION_COMMERCANT)!=null)
+		{
+			String id = request.getParameter(CHAMP_ID);
+			page = JSP_MODIF;
+
+			Commercant commercant;
+			if((commercant = (Commercant) session.getAttribute(SESSION_COMMERCANT))!=null)
+			{
+				Produit produit;
+				if((produit = produitDao.trouver(id))!=null) {
+					request.setAttribute("produit", produit);
+				}
 			}
+			//this.getServletContext().getRequestDispatcher(page).forward(request, response);
 		}
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}

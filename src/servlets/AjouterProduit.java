@@ -6,12 +6,20 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  * Servlet implementation class ajoutProduit
  */
 public class AjouterProduit extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
+	public static final String SESSION_COMMERCANT = "connexionCommercant";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
+	
+	public static final String PAGE = "/WEB-INF/ajoutProduit.jsp";
+	public static final String PAGE_CONNEXION = "/authentificationServlet";
 
 	/**
 	 * @see HttpServlet#HttpServlet()
@@ -26,7 +34,18 @@ public class AjouterProduit extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		this.getServletContext().getRequestDispatcher("/WEB-INF/ajoutProduit.jsp").forward(request, response);
+		String page = PAGE_CONNEXION;
+		HttpSession session = request.getSession();
+		
+		if(session.getAttribute(SESSION_CLIENT)!=null || session.getAttribute(SESSION_LIVREUR)!=null)
+		{
+			session.invalidate();
+		}
+		else if(session.getAttribute(SESSION_COMMERCANT)!=null)
+		{
+			page = PAGE;
+		}
+		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}
 
 	/**
@@ -35,5 +54,4 @@ public class AjouterProduit extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 	}
-
 }

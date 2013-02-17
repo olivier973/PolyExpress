@@ -17,6 +17,9 @@ public class AjoutProduitForm {
 	private static final String CHAMP_DESCRIPTION="description";
 	private static final String CHAMP_PRIX="prix";
 	private static final String CHAMP_QUANTITE="quantite";
+	public static final String SESSION_COMMERCANT = "connexionCommercant";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
 
 	private Produit produit;
 
@@ -36,7 +39,7 @@ public class AjoutProduitForm {
 		String prix = getValeurChamp(request,CHAMP_PRIX);
 		String quantite = getValeurChamp(request,CHAMP_QUANTITE);
 		HttpSession session = request.getSession();
-		commercant = (Commercant) session.getAttribute("connexionCommercant");
+		commercant = (Commercant) session.getAttribute(SESSION_COMMERCANT);
 		produit=new Produit();
 		produit.setCommercant(commercant.getId());
 		produit.setDescription(description);

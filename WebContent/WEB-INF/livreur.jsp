@@ -34,8 +34,8 @@
 			<div class="feat_prod_box_details">
 				<P>
 					<c:out value="${message}" />
-					<c:out value="${livreurConnexion.prenom}" />
-					<c:out value="${livreurConnexion.nom}" />
+					<c:out value="${connexionLivreur.prenom}" />
+					<c:out value="${connexionLivreur.nom}" />
 				</p>
 				<p>Vous pouvez ici consulter la liste des alertes</p>
 				<table>
@@ -46,7 +46,7 @@
 					<c:forEach var="message" items="${listemessages}">
 						<tr>
 							<td><c:out value="${message.id}" /></td>
-							<td><c:out value="${message.texte_traffic}" /></td>
+							<td><c:out value="${message.msg}" /></td>
 						</tr>
 					</c:forEach>
 				</table>

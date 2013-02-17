@@ -8,9 +8,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import dao.ClientDAO;
+import dao.CommandeDAO;
 import dao.CommercantDAO;
 import dao.DAOFactory;
 import dao.LivreurDAO;
+import dao.MessageDAO;
 import dao.ProduitDAO;
 import formulaire.ConnexionUtilisateurForm;
 
@@ -24,6 +26,8 @@ public class Connexion extends HttpServlet {
 	private CommercantDAO commercantDao;
 	private LivreurDAO livreurDao;
 	private ProduitDAO produitDao;
+	private MessageDAO messageDao;
+	private CommandeDAO commandeDao;
 
 	public static final String MESS_DAO = "Erreur DAO.";
 	public static final String PAGE_MESS = "/WEB-INF/affichageMessage.jsp";
@@ -36,6 +40,8 @@ public class Connexion extends HttpServlet {
 		this.livreurDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getLivreurDAO();
 		this.commercantDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getCommercantDAO();
 		this.produitDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getProduitDAO();
+		this.messageDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getMessageDAO();
+		this.commandeDao = ((DAOFactory)getServletContext().getAttribute(CONF_DAO_FACTORY)).getCommandeDAO();
 	}
 
 	/**
@@ -59,7 +65,7 @@ public class Connexion extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 
-		ConnexionUtilisateurForm form = new ConnexionUtilisateurForm(this.produitDao, this.commercantDao, this.clientDao, this.livreurDao);
+		ConnexionUtilisateurForm form = new ConnexionUtilisateurForm(this.produitDao, this.commercantDao, this.clientDao, this.livreurDao, this.messageDao, this.commandeDao);
 
 		String page = null;
 		boolean res;

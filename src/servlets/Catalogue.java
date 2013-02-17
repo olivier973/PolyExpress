@@ -21,8 +21,8 @@ public class Catalogue extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String PAGE_CONNEXION = "/WEB-INF/authentification.jsp";
 	public static final String SESSION_COMMERCANT = "connexionCommercant";
-	public static final String SESSION_LIVREUR = "livreurConnexion";
-	public static final String SESSION_CLIENT = "clientConnexion";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
 	private static final String MESS_BON = "Bienvenue sur votre espace";
 	private static final String PAGE_CATA = "/WEB-INF/catalogue.jsp";
 	private ProduitDAO produitDao;

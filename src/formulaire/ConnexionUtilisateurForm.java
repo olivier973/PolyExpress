@@ -7,13 +7,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import beans.Client;
+import beans.Commande_PenseBete;
 import beans.Commercant;
 import beans.Livreur;
+import beans.Message;
 import beans.Produit;
 import dao.ClientDAO;
+import dao.CommandeDAO;
 import dao.CommercantDAO;
 import dao.DAOException;
 import dao.LivreurDAO;
+import dao.MessageDAO;
 import dao.ProduitDAO;
 
 public class ConnexionUtilisateurForm {
@@ -21,6 +25,8 @@ public class ConnexionUtilisateurForm {
 	private CommercantDAO commercantDAO;
 	private LivreurDAO livreurDAO;
 	private ProduitDAO produitDAO;
+	private MessageDAO messageDAO;
+	private CommandeDAO commandeDAO;
 
 	private String message = null;
 	private String page = JSP_ERREUR;
@@ -38,13 +44,19 @@ public class ConnexionUtilisateurForm {
 	private static final String JSP_COMMERCANT = "/WEB-INF/commercant.jsp";
 	private static final String JSP_LIVREUR = "/WEB-INF/livreur.jsp";
 	private static final String JSP_ERREUR = "/WEB-INF/authentification.jsp";
+	
+	public static final String SESSION_COMMERCANT = "connexionCommercant";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
 
-	public ConnexionUtilisateurForm(ProduitDAO produitDao,CommercantDAO commercantDao,ClientDAO clientDao,LivreurDAO livreurDao) {
+	public ConnexionUtilisateurForm(ProduitDAO produitDao,CommercantDAO commercantDao,ClientDAO clientDao,LivreurDAO livreurDao,MessageDAO messageDao,CommandeDAO commandeDao) {
 		super();
 		this.produitDAO = produitDao;
 		this.commercantDAO=commercantDao;
 		this.clientDAO=clientDao;
 		this.livreurDAO=livreurDao;
+		this.messageDAO=messageDao;
+		this.commandeDAO=commandeDao;
 	}
 
 	public boolean ConnexionUtilisateur(HttpServletRequest request) {
@@ -74,8 +86,13 @@ public class ConnexionUtilisateurForm {
 				else
 				{
 					message = MESS_BON;
-					session.setAttribute("clientConnexion", client);
+					session.setAttribute(SESSION_CLIENT, client);
 					page = JSP_CLIENT;
+					
+					List<Commande_PenseBete> listecommandes = new ArrayList<Commande_PenseBete>();
+					if((listecommandes =(ArrayList<Commande_PenseBete>) commandeDAO.trouverDestinataire(client.getId()))!=null) {
+						request.setAttribute("listecommandes", listecommandes);
+					}
 				}
 			}
 			catch ( DAOException e ) 
@@ -96,13 +113,13 @@ public class ConnexionUtilisateurForm {
 				else
 				{
 					message = MESS_BON;
-					session.setAttribute("livreurConnexion", livreur);
+					session.setAttribute(SESSION_LIVREUR, livreur);
 					page = JSP_LIVREUR;
 					
-					/*List<Message> listemessages = new ArrayList<Message>();
+					List<Message> listemessages = new ArrayList<Message>();
 					if((listemessages =(ArrayList<Message>) messageDAO.trouver())!=null) {
-						requete.setAttribute("listemessages", listemessages);
-					}*/
+						request.setAttribute("listemessages", listemessages);
+					}
 				}
 			}
 			catch ( DAOException e ) 
@@ -123,23 +140,8 @@ public class ConnexionUtilisateurForm {
 				else
 				{
 					message = MESS_BON;
-					session.setAttribute("connexionCommercant", commercant);
+					session.setAttribute(SESSION_COMMERCANT, commercant);
 					page = JSP_COMMERCANT;
-
-					/* Map<Integer, Commercant> commercants = (HashMap<Integer, Commercant>) session.getAttribute(SESSION_COMMERCANT);
-				if(commercants == null)
-				{
-					commercants = new HashMap<Integer, Commercant>();
-				}
-				commercants.put(commercant.getId(), commercant);
-				session.setAttribute(SESSION_COMMERCANT, commercants); */
-
-					/*	<c:forEach items="${sessionScope.commercants}" var="mapEntry">
-						<tr>
-								<td>${mapEntry.value.nom}</td>
-								<td>${mapEntry.value.prenom}</td>
-						</tr>
-					</c:forEach>	*/
 
 					List<Produit> listeproduits = new ArrayList<Produit>();
 					if((listeproduits =(ArrayList<Produit>) produitDAO.trouver(commercant.getId()))!=null) {

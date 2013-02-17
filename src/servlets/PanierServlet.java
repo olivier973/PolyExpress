@@ -19,10 +19,12 @@ import dao.ProduitDAO;
  */
 public class PanierServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	public static final String PAGE_CONNEXION = "/WEB-INF/authentification.jsp";
+	public static final String PAGE_CONNEXION = "/authentificationServlet";
+	
 	public static final String SESSION_COMMERCANT = "connexionCommercant";
-	public static final String SESSION_LIVREUR = "livreurConnexion";
-	public static final String SESSION_CLIENT = "clientConnexion";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
+	
 	private static final String MESS_BON = "Bienvenue sur votre espace";
 	private static final String PAGE_CATA = "/WEB-INF/panier.jsp";
 	private ProduitDAO produitDao;
@@ -48,10 +50,6 @@ public class PanierServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
 		String page = PAGE_CONNEXION;
-		String choix = request.getParameter("ch");
-		String id = request.getParameter("id");
-		Produit produit;
-		float montant = 0;
 
 		HttpSession session = request.getSession();
 
@@ -61,6 +59,11 @@ public class PanierServlet extends HttpServlet {
 		}
 		else if(session.getAttribute(SESSION_CLIENT)!=null)
 		{
+			String choix = request.getParameter("ch");
+			String id = request.getParameter("id");
+			Produit produit;
+			float montant = 0;
+			
 			page = PAGE_CATA;
 			request.setAttribute("message", MESS_BON);
 

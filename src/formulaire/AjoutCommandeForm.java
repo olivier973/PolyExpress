@@ -37,7 +37,6 @@ public class AjoutCommandeForm {
 		
 		try 
 		{
-
 			commandeDao.creer( commande); 
 		}
 		catch ( DAOException e ) 
@@ -47,7 +46,5 @@ public class AjoutCommandeForm {
 			commande=null;
 		}
 		return commande;
-	}
-	
-	
+	}	
 }

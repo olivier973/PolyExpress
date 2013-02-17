@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.DAOFactory;
 import dao.UserDAO;
@@ -26,6 +27,10 @@ public class InscriptionClientFormServlet extends HttpServlet {
 	public static final String ATT_FORM  = "form";
 	public static final String VUE_CLIENT= "/WEB-INF/inscriptionClient.jsp";
 	public static final String VUE= "/authentificationServlet";
+
+	public static final String SESSION_COMMERCANT = "connexionCommercant";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
 
 	private UserDAO clientDao;
 
@@ -50,8 +55,13 @@ public class InscriptionClientFormServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		
+		HttpSession session = request.getSession();
+		if(session.getAttribute(SESSION_CLIENT)!=null || session.getAttribute(SESSION_LIVREUR)!=null || session.getAttribute(SESSION_COMMERCANT)!=null)
+		{
+			session.invalidate();
+		}
 		/* PreÌ�paration de l'objet formulaire */
-
 		InscriptionClientForm form = new InscriptionClientForm( clientDao );
 
 		/* traitement de la requeÌ‚te et reÌ�cupeÌ�ration du bean en reÌ�sultant */

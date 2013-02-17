@@ -6,8 +6,10 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import beans.Client;
+import beans.Commande_PenseBete;
 import beans.Commercant;
 import beans.Livreur;
+import beans.Message;
 import beans.Produit;
 
 public class DAOUtilitaire {
@@ -56,8 +58,33 @@ public class DAOUtilitaire {
 			produit.setPrix(resultSet.getFloat("prix"));
 			return (Object) produit;
 		}
+		if(dao instanceof MessageDAO)
+		{
+			Message message = new Message();
+			message.setId( resultSet.getInt( "id_msg" ) ); 
+			message.setId_livreur( resultSet.getInt( "id_livreur" ));
+			message.setMsg(resultSet.getString("texte_traffic"));
+			return (Object) message;
+		}
 		return null;
 	}
+
+	public static Commande_PenseBete mapCb(ResultSet resultSet) throws SQLException
+	{
+		Commande_PenseBete commande = new Commande_PenseBete();
+		commande.setAdresse_livraison( resultSet.getString( "adresse_livraison" ) ); 
+		commande.setDestinataire( resultSet.getInt( "destinataire" ));
+		commande.setEtat(resultSet.getString("etat"));
+		commande.setId( resultSet.getInt( "numero_commande" ) );
+		/*if(resultSet.getInt("id_livreur")==0)
+		{}
+		else*/
+		commande.setId_livreur( resultSet.getInt( "id_livreur" ));
+		commande.setMontant(resultSet.getFloat("montant"));
+		commande.setId_pensebete(resultSet.getInt("id_pense_bete"));
+		return commande;
+	}
+
 	public static void fermetureSilencieuse( ResultSet resultSet ) 
 	{ 	
 		if ( resultSet != null ) 

@@ -15,8 +15,8 @@ public class Deconnexion extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	public static final String PAGE_DECONNEXION = "/acceuil";
 	public static final String SESSION_COMMERCANT = "connexionCommercant";
-	public static final String SESSION_LIVREUR = "livreurConnexion";
-	public static final String SESSION_CLIENT = "clientConnexion";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
 
 	/**
 	 * @see HttpServlet#HttpServlet()

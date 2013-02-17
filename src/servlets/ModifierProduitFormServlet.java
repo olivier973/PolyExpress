@@ -6,6 +6,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import dao.CommercantDAO;
 import dao.DAOFactory;
@@ -20,8 +21,14 @@ public class ModifierProduitFormServlet extends HttpServlet {
 	public static final String CONF_DAO_FACTORY = "daofactory";
 	public static final String ATT_PRODUIT = "produit";
 	public static final String ATT_FORM  = "form";
+
 	public static final String VUE_MODIF= "/WEB-INF/modifierProduit.jsp";
 	public static final String JSP_COMMERCANT = "/authentificationServlet";
+	public static final String PAGE_CONNEXION = "/authentificationServlet";
+
+	public static final String SESSION_COMMERCANT = "connexionCommercant";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
 
 	private CommercantDAO commercantDao;
 	private ProduitDAO produitDao;
@@ -52,20 +59,30 @@ public class ModifierProduitFormServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
-		ModifierProduitForm form = new ModifierProduitForm(this.produitDao,this.commercantDao);
+		String page = PAGE_CONNEXION;
+		HttpSession session = request.getSession();
 
-		/* traitement de la requeÌ‚te et reÌ�cupeÌ�ration du bean en reÌ�sultant */
-		String page = null;
-		boolean res;
-		res = form.ModifierProduit(request);
-		if(res==false)
+		if(session.getAttribute(SESSION_CLIENT)!=null || session.getAttribute(SESSION_LIVREUR)!=null)
 		{
-			request.setAttribute(ATT_PRODUIT, form.getProduit());
-			page = VUE_MODIF;
+			session.invalidate();
 		}
-		else
+		else if(session.getAttribute(SESSION_COMMERCANT)!=null)
 		{
-			page = JSP_COMMERCANT;
+			ModifierProduitForm form = new ModifierProduitForm(this.produitDao,this.commercantDao);
+
+			/* traitement de la requeÌ‚te et reÌ�cupeÌ�ration du bean en reÌ�sultant */
+			boolean res;
+			res = form.ModifierProduit(request);
+			if(res==false)
+			{
+				request.setAttribute(ATT_PRODUIT, form.getProduit());
+				page = VUE_MODIF;
+			}
+			else
+			{
+				page = JSP_COMMERCANT;
+			}
+			//this.getServletContext().getRequestDispatcher(page).forward(request, response);
 		}
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}

@@ -42,15 +42,15 @@
 					</tr>
 					<c:forEach var="commande" items="${listecommandes}">
 						<tr>
-							<td><c:out value="${commande.numero_commande}" /></td>
+							<td><c:out value="${commande.id}" /></td>
 							<td><c:out value="${commande.montant}" /></td>
 							<td><c:out value="${commande.adresse_livraison}" /></td>
 							<c:choose>
-								<c:when test="${empty commande.livreur}">
-									<td><a href="attributionLivraisonServlet?id=${commande.id}">S'occuper de cette livraison</a></td>
+								<c:when test="${commande.id_livreur==0}">
+									<td><a href="attributionLivraisonServlet?id=${commande.id_pensebete}">S'occuper de cette livraison</a></td>
 								</c:when>
 								<c:otherwise>
-									<td><c:out value="${commande.livreur}" /></td>
+									<td><c:out value="${commande.id_livreur}" /></td>
 								</c:otherwise>
 							</c:choose>
 						</tr>

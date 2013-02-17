@@ -23,28 +23,29 @@ public class ListeObjetsDAO {
 	
 		
 		/*requete sql pour inserer un utilisateur dans la base*/
-		String sql="INSERT INTO commande VALUES (null,'"+listeObjets.getId_penseBete()+"','"+listeObjets.getId_objet()+"');";
+		String sql="INSERT INTO listeobjets VALUES (null,'"+listeObjets.getId_penseBete()+"','"+listeObjets.getId_objet()+"');";
 		/*requete sql pour recuperer l'id de listeObjets nouvellement creer*/
-		String id="SELECT id_list FROM listeobjets WHERE id_pense_bete='"+listeObjets.getId_penseBete()+"'and id_objet='"+listeObjets.getId_objet()+"';";
+		//String id="SELECT id_list FROM listeobjets WHERE id_pense_bete='"+listeObjets.getId_penseBete()+"'and id_objet='"+listeObjets.getId_objet()+"';";
+		String id="SELECT LAST_INSERT_ID() as id_list";
 		try 
 		{
-			/* Récupération d'une connexion depuis la Factory */ 
+			/* ReÌ�cupeÌ�ration d'une connexion depuis la Factory */ 
 			connexion = daoFactory.getConnection();
 			int statut= daoFactory.getConnexion().getDbStatement().executeUpdate(sql);
-			/* Analyse du statut retourné par la requête d'insertion */ 
+			/* Analyse du statut retourneÌ� par la requeÌ‚te d'insertion */ 
 			if ( statut==0) 
 			{
-				throw new DAOException( "Échec de la création de l'utilisateur, aucune ligne ajoutée dans la table." );
+				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur, aucune ligne ajouteÌ�e dans la table." );
 			}
-			/* Récupération de l'id auto-généré par la requête d'insertion */
+			/* ReÌ�cupeÌ�ration de l'id auto-geÌ�neÌ�reÌ� par la requeÌ‚te d'insertion */
 			resultat = daoFactory.getConnexion().exec(id);
 			if ( resultat.next() ) 
 			{
-				/* Puis initialisation de la propriété id du bean Utilisateur avec sa valeur */
+				/* Puis initialisation de la proprieÌ�teÌ� id du bean Utilisateur avec sa valeur */
 				listeObjets.setId( resultat.getInt("id_list") ); 
 			} else 
 			{
-				throw new DAOException( "Échec de la création de l'utilisateur en base, aucun ID auto-généré retourné." );
+				throw new DAOException( "EÌ�chec de la creÌ�ation de l'utilisateur en base, aucun ID auto-geÌ�neÌ�reÌ� retourneÌ�." );
 			}
 		} catch ( SQLException e )
 		{

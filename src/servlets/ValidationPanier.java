@@ -28,12 +28,16 @@ public class ValidationPanier extends HttpServlet {
 	private static final String MESS_ERR_COMM = "Commande invalide.";
 	private static final String MESS_ERR_POST = "PostIt invalide.";
 	private static final String MESS_ERR_LO = "ListeObjets invalide.";
-	public static final String PAGE_CONNEXION = "/WEB-INF/authentification.jsp";
+
+	public static final String PAGE_CONNEXION = "/authentificationServlet";
+	
 	public static final String SESSION_COMMERCANT = "connexionCommercant";
-	public static final String SESSION_LIVREUR = "livreurConnexion";
-	public static final String SESSION_CLIENT = "clientConnexion";
+	public static final String SESSION_LIVREUR = "connexionLivreur";
+	public static final String SESSION_CLIENT = "connexionClient";
+	
 	public static final String CONF_DAO_FACTORY = "daofactory";
 	public static final String PAGE_ERR = "/WEB-INF/affichageMessage.jsp";
+	
 	private CommandeDAO commandeDao;
 	private ListeObjetsDAO listeObjetsDao;
 	private PenseBeteDAO penseBeteDao;
@@ -65,10 +69,7 @@ public class ValidationPanier extends HttpServlet {
 		}
 		else if(session.getAttribute(SESSION_CLIENT)!=null)
 		{
-			
-			
-			
-			Client client = (Client) session.getAttribute("clientConnexion");
+			Client client = (Client) session.getAttribute(SESSION_CLIENT);
 
 			List<Produit> listepanier;
 			listepanier = (List<Produit>) session.getAttribute("listepanier");
@@ -96,6 +97,8 @@ public class ValidationPanier extends HttpServlet {
 						ListeObjets liste =listForm.ajouterListeObjets(request);
 						if(liste !=null && page!=PAGE_ERR)
 						{
+							listepanier = null;
+							session.setAttribute("listepanier", listepanier);
 							request.setAttribute("message", MESS_BON);
 							page = PAGE;
 							
@@ -110,11 +113,6 @@ public class ValidationPanier extends HttpServlet {
 					
 				}
 			}
-			/*if(listepanier != null)
-			{
-				listepanier = null;
-			}
-			session.setAttribute("listepanier", listepanier);*/
 		}
 		this.getServletContext().getRequestDispatcher(page).forward(request, response);
 	}

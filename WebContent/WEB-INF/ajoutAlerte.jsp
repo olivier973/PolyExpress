@@ -42,7 +42,7 @@
 
 						<div>
 							<label for="texte">Description</label> <input type="text"
-								id="texte" name="texte" size="30" maxlength="100" value="" />
+								id="texte" name="texte" size="30" maxlength="100" value="${message_alerte}" />
 						</div>
 
 						<div>

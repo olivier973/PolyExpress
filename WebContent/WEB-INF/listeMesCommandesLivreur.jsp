@@ -42,11 +42,11 @@
 					</tr>
 					<c:forEach var="commande" items="${listecommandes}">
 						<tr>
-							<td><c:out value="${commande.numero_commande}" /></td>
+							<td><c:out value="${commande.id}" /></td>
 							<td><c:out value="${commande.montant}" /></td>
 							<td><c:out value="${commande.adresse_livraison}" /></td>
 							<c:choose>
-								<c:when test="${commande.etat == 'en_cours'}">
+								<c:when test="${commande.etat != 'Terminee'}">
 									<td><a href="validerLivraisonServlet?id=${commande.id}">Valider
 											la livraison</a></td>
 								</c:when>

@@ -30,9 +30,25 @@
 					title="" /></span>Espace Client
 			</div>
 			<div class="feat_prod_box_details">
-				<p>${message} ${clientConnexion.prenom} ${clientConnexion.nom}</p>
+				<p>${message} ${connexionClient.prenom} ${connexionClient.nom}</p>
 				<p>Vous pouvez ici consulter vos commandes précedemment
 					effectuées</p>
+				<table>
+					<tr>
+						<td>Numéro de la commande</td>
+						<td>Montant</td>
+						<td>Etat</td>
+						<td>Adresse de livraison</td>
+					</tr>
+					<c:forEach var="commande" items="${listecommandes}">
+						<tr>
+							<td><c:out value="${commande.id}" /></td>
+							<td><c:out value="${commande.montant}" /></td>
+							<td><c:out value="${commande.etat}" /></td>
+							<td><c:out value="${commande.adresse_livraison}" /></td>
+						</tr>
+					</c:forEach>
+				</table>
 			</div>
 		</div>
 		<div class="footer">
