@@ -21,6 +21,8 @@
 					<li class="divider"></li>
 					<li><a href="catalogueServlet">catalogue</a></li>
 					<li class="divider"></li>
+					<li><a href="deconnexion">déconnexion</a></li>
+					<li class="divider"></li>
 				</ul>
 			</div>
 		</div>

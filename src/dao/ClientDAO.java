@@ -83,4 +83,30 @@ public class ClientDAO implements UserDAO {
 		}
 		return client; 
 	}
+	public Client trouver(int id) throws DAOException {
+		// TODO Auto-generated method stub
+
+		Connection connexion = null; 
+		ResultSet resultSet = null;
+		Client client = null;
+		String sql="SELECT id_client, nom, prenom, mdp, email, coordonnee FROM client WHERE id='"+id+"';";
+		try
+		{
+			/* Recuperation d'une connexion depuis la Factory */
+			connexion = daoFactory.getConnection();
+			resultSet = daoFactory.getConnexion().exec(sql);
+			/* Parcours de la ligne de donnees de l'eventuel ResulSet retourne */
+			if ( resultSet.next() ) 
+			{
+				client = (Client)map( resultSet, this );
+			}
+		} catch ( SQLException e )
+		{
+			throw new DAOException( e );
+		} finally 
+		{
+			fermeturesSilencieuses( resultSet,daoFactory.getConnexion().getDbStatement(),  connexion );
+		}
+		return client; 
+	}
 }

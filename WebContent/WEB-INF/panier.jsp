@@ -50,7 +50,7 @@
 						<tr>
 							<td><c:out value="${produit.nom}" /></td>
 							<td><c:out value="${produit.prix}" /></td>
-							<td><c:out value="${produit.quantite}" /></td>
+							<td><c:out value="1" /></td>
 							<td><c:out value="${produit.description}" /></td>
 							<td><a href="panierServlet?id=${produit.id}&ch=supprimer">Supprimer
 									le produit</a></td>

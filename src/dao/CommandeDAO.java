@@ -66,7 +66,7 @@ public class CommandeDAO {
 		ResultSet resultSet = null;
 		Commande_PenseBete commande = null;
 		List<Commande_PenseBete> listecommandes = new ArrayList<Commande_PenseBete>();
-		String sql="SELECT * FROM commande join pensebete on numero_commande=id_commande;";
+		String sql="SELECT * FROM commande join pensebete on numero_commande=id_commande where pensebete.id_livreur IS NULL;";
 		try
 		{
 			/* Recuperation d'une connexion depuis la Factory */
